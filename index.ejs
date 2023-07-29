@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreshKicks</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Poppins&display=swap" 
+    rel="stylesheet">
+  <link rel="icon" href="/kicks_icon.png">
+  <!-- Link to Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Link to your custom CSS file -->
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg" aria-label="Offcanvas navbar large">
+          <div class="container-fluid">
+            <a href="/" class="logo"><img src="/freshkicks_logo.png" alt="Logo of Fresh Kicks" width="150"></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+              <div class="offcanvas-header">
+                <img src="/person-circle.svg" width="40" height="40" class="rounded-circle">
+                <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 ms-xl-5 align-items-xl-center align-items-lg-center">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/collections">Collection</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/contact">Contact</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+                  <li class="nav-item">
+                    <a class="nav-link d-lg-none d-xl-none" href="#">My Cart</a>
+                  </li>
+                </ul>
+                <form class="d-flex mt-3 mt-lg-0 mt-xl-0 align-items-center flex-grow-1" role="search">
+                  <input class="form-control me-xl-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-primary" type="submit"><img src="/search.svg" alt="cart-icon" class="bi" width="24" height="24"></button>
+                </form>
+                <ul class="navbar-nav justify-content-end flex-grow-1 mt-sm-3 mb-xl-3 mb-lg-3 ms-xl-5">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#"><img src="/cart.svg" alt="cart-icon" class="d-none d-md-none d-lg-block d-xl-block" width="30" height="30"></a>
+                  </li>
+                </ul>
+                <div class="collapse navbar-collapse" id="navbar-list-4">
+                  <ul class="navbar-nav">
+                      <li class="nav-item dropdown" id="hover-dropdown">
+                      <a class="nav-link link-body-emphasis text-decoration-none dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="/person-circle.svg" width="40" height="40" class="rounded-circle">
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/login">Log In</a>
+                        <a class="dropdown-item" href="#">My Orders</a>
+                        <a class="dropdown-item" href="#">Edit Profile</a>
+                        <a class="dropdown-item" href="#">Log Out</a>
+                      </div>
+                    </li>   
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+      </nav>
+
+      <!-- Image Carousel -->
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="3000">
+            <img src="/shoes_1.jpg" class="d-none d-md-block d-lg-block col-md-12 col-lg-12 col-xl-12" alt="Shoes in Carousel"/>
+            <img src="/shoes_sm1.jpg" class="d-block d-md-none d-lg-none col-12 col-md-12 col-lg-11 col-xl-11" alt="Shoes in Carousel"/>
+          </div>
+          <div class="carousel-item" data-bs-interval="3000">
+            <img src="/shoes_2.jpg" class="d-none d-md-block d-lg-block col-md-12 col-lg-12 col-xl-12" alt="Shoes in Carousel"/>
+            <img src="/shoes_sm2.jpg" class="d-block d-md-none d-lg-none col-12 col-md-12 col-lg-11 col-xl-11" alt="Shoes in Carousel"/>
+          </div>
+          <div class="carousel-item" data-bs-interval="3000">
+            <img src="/shoes_3.jpg" class="d-none d-md-block d-lg-block col-md-12 col-lg-12 col-xl-12" alt="Shoes in Carousel"/>
+            <img src="/shoes_sm3.jpg" class="d-block d-md-none d-lg-none col-12 col-md-12 col-lg-11 col-xl-11" alt="Shoes in Carousel"/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Arrivals -->
+
+    <div class="container-fluid my-5">
+      <header class="new-arrivals row justify-content-center text-center mb-4 mx-3">
+        <h3 style="font-weight: bolder">NEW ARRIVALS</h3>
+        <h6 class="text-muted">Just in now</h6>
+      </header>
+      <div class="row bg-body-tertiary">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card my-2 shadow-0">
+            <a href="#" class="">
+              <div class="mask" style="height: 30px;">
+                <div class="d-flex justify-content-start align-items-start h-100 m-2">
+                  <h6><span class="badge bg-danger pt-1">New</span></h6>
+                </div>
+              </div>
+              <img src="/shoes-img1.png" class="card-img-top rounded-2" width="250" height="250">
+            </a>
+            <div class="card-body p-0 pt-3">
+              <a href="#!" class="heart px-2 pt-2 pt-xl-2 float-end icon-hover"><img src="/heart.svg" alt="heart" width="24" height="24" class="bi"></a>
+              <h5 class="card-title">Rs. 2999</h5>
+              <p class="card-text mb-0">Running Shoes</p>
+              <p class="text-muted">
+                UK sizes available
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card my-2 shadow-0">
+            <a href="#" class="">
+              <div class="mask" style="height: 40px;">
+                <div class="d-flex justify-content-start align-items-start h-100 m-2">
+                  <h6><span class="badge pt-1" style="background-color: #f87217;">Offer</span></h6>
+                </div>
+              </div>
+              <img src="/shoes-img4.png" class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" width="250" height="250">
+            </a>
+            <div class="card-body p-0 pt-2">
+              <a href="#!" class="heart pt-2 px-2 float-end icon-hover"><img src="/heart.svg" alt="heart" width="24" height="24" class="bi"></a>
+              <h5 class="card-title">Rs. 3999</h5>
+              <p class="card-text mb-0">Sports Shoes</p>
+              <p class="text-muted">
+                UK sizes available
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card my-2 shadow-0">
+            <a href="#" class="py-2 pt-lg-3 py-xl-1">
+              <img src="/shoes-img11.png" class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" width="250" height="250">
+            </a>
+            <div class="card-body p-0 py-2 pb-lg-0 pb-xl-0 pt-xl-4">
+              <a href="#!" class="heart px-2 pt-2 pt-xl-4 pb-xl-0 py-lg-4 float-end icon-hover"><img src="/heart.svg" alt="heart" width="24" height="24" class="bi"></a>
+              <h5 class="card-title">Rs. 5999</h5>
+              <p class="card-text mb-0">Professional Sports & Running Shoes</p>
+              <p class="text-muted">
+                UK sizes available
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card my-2 shadow-0">
+            <a href="#" class="py-2 py-xl-3 py-lg-3">
+              <img src="shoes-img3.png" class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" width="250" height="250">
+            </a>
+            <div class="card-body p-0 py-2 py-xl-2 pt-xl-2 pt-lg-3">
+              <a href="#!" class="heart pt-2 px-2 py-xl-4 float-end icon-hover"><img src="/heart.svg" alt="heart" width="24" height="24" class="bi"></a>
+              <h5 class="card-title pt-xl-2">Rs. 1999</h5>
+              <p class="card-text mb-0">Casual Sneakers</p>
+              <p class="text-muted">
+                UK sizes available
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card my-2 shadow-0">
+            <a href="#" class="py-xl-2 py-md-2">
+              <img src="/shoes-img12.png" class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" width="250" height="250">
+            </a>
+            <div class="card-body p-0 pt-2 py-xl-2 pt-md-3">
+              <a href="#!" class="heart pt-2 px-2 pt-md-0 float-end icon-hover"><img src="/heart.svg" alt="heart" width="24" height="24" class="bi"></a>
+              <h5 class="card-title">Rs. 8999</h5>
+              <p class="card-text mb-0">Pro Basketball Shoes</p>
+              <p class="text-muted">
+                UK sizes available
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card my-2 shadow-0">
+            <a href="#" class="">
+              <img src="/shoes-img2.png" class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" width="250" height="250">
+            </a>
+            <div class="card-body p-0 pt-2">
+              <a href="#!" class="heart px-2 pt-2 pt-xl-4 pt-md-4 float-end icon-hover"><img src="/heart.svg" alt="heart" width="24" height="24" class="bi"></a>
+              <h5 class="card-title">Rs. 4999</h5>
+              <p class="card-text mb-0">Olive & Blue Limited Edition Running Shoes</p>
+              <p class="text-muted">
+                UK sizes available
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card my-2 shadow-0">
+            <a href="#" class="py-xl-2 py-md-2">
+              <img src="/shoes-img9.png" class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" width="250" height="250">
+            </a>
+            <div class="card-body p-0 pt-2 py-xl-2 pt-md-3">
+              <a href="#!" class="heart pt-2 px-2 float-end icon-hover"><img src="/heart.svg" alt="heart" width="24" height="24" class="bi"></a>
+              <h5 class="card-title">Rs. 4999</h5>
+              <p class="card-text mb-0">Air Pro Sneakers</p>
+              <p class="text-muted">
+                UK sizes available
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card my-2 shadow-0">
+            <a href="#" class="">
+              <img src="/shoes-img10.png" class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" width="250" height="250">
+            </a>
+            <div class="card-body p-0 pt-2">
+              <a href="#!" class="heart px-2 pt-2 pt-xl-4 py-md-4 float-end icon-hover"><img src="/heart.svg" alt="heart" width="24" height="24" class="bi"></a>
+              <h5 class="card-title">Rs. 9999</h5>
+              <p class="card-text mb-0">Professional Limited Edition Sports Shoes</p>
+              <p class="text-muted">
+                UK sizes available
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-image hover-overlay ripple" data-bs-ripple-color="light">
+      <div class="image-container float-start">
+        <a href="#"><img src="/shoes_image.jpg" class="img-fluid" alt="Person wearing shoes"></a>
+        <div class="shoes-1 d-flex">
+          SPORTS SHOES
+          <br>
+          <br>
+          20% OFF ON MEN'S SPORTS <br>SHOES
+          <br>
+          <br>
+        </div>
+      </div>
+
+      <div class="image-container float-end">
+        <a href="#"><img src="/shoes_image-2.jpg" class="img-fluid" alt="Person wearing shoes"/></a>
+        <div class="shoes-2 d-flex">
+          SPORTS SHOES
+          <br>
+          <br>
+          30% OFF ON WOMEN'S SPORTS <br>SHOES
+          <br>
+          <br>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div class="col d-flex align-items-start">
+        <div class="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3 mt-2">
+          <img src="/truck.svg" class="bi" alt="truck icon" height="24px" width="24px">
+        </div>
+        <div>
+          <h3 class="fs-2 text-body-emphasis">FREE SHIPPING</h3>
+          <p>Free Shipping on all orders all over India.</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <div class="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3 mt-2">
+          <img src="/clock-history.svg" class="bi" alt="truck icon" height="24px" width="24px">
+        </div>
+        <div>
+          <h3 class="fs-2 text-body-emphasis">ONLINE SUPPORT</h3>
+          <p>Online Support for 24 hours a day.</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <div class="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3 mt-2">
+          <img src="/wallet2.svg" class="bi" alt="truck icon" height="24px" width="24px">
+        </div>
+        <div>
+          <h3 class="fs-2 text-body-emphasis">MONEY RETURN</h3>
+          <p>Money back gurarantee under 5 days.</p>
+        </div>
+      </div>
+    </div>
+
+    <section class="section-products">
+      <div class="container">
+          <div class="row justify-content-center text-center">
+              <div class="col-md-8 col-lg-6">
+                  <div class="header">
+                    <h3 style="font-weight: bolder">BEST SELLERS</h3>
+                    <h6 class="text-muted">Top Sellers of the Month</h6>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <!-- Single Product -->
+              <div class="col-md-6 col-lg-4 col-xl-3">
+                  <div id="product-1" class="single-product">
+                      <div class="part-1">
+                          <ul>
+                              <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
+                              <li><a href="#"><img src="/heart.svg" alt="heart" width="15px" height="15px"></a></li>
+                              <li><a href="#"><img src="/fullscreen.svg" alt="maximize icon" width="15px" height="15px"></a></li>
+                          </ul>
+                      </div>
+                      <div class="part-2">
+                          <h3 class="product-title">Pro Basketball Shoes</h3>
+                          <h4 class="product-old-price">Rs.9999</h4>
+                          <h4 class="product-price">Rs.8999</h4>
+                      </div>
+                  </div>
+              </div>
+              <!-- Single Product -->
+              <div class="col-md-6 col-lg-4 col-xl-3">
+                  <div id="product-2" class="single-product">
+                      <div class="part-1">
+                          <span class="discount">Best Seller</span>
+                          <ul>
+                            <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
+                            <li><a href="#"><img src="/heart.svg" alt="heart" width="15px" height="15px"></a></li>
+                            <li><a href="#"><img src="/fullscreen.svg" alt="maximize icon" width="15px" height="15px"></a></li>
+                          </ul>
+                      </div>
+                      <div class="part-2">
+                          <h3 class="product-title">High Top Casuals</h3>
+                          <h4 class="product-price">Rs.7999</h4>
+                      </div>
+                  </div>
+              </div>
+              <!-- Single Product -->
+              <div class="col-md-6 col-lg-4 col-xl-3">
+                  <div id="product-3" class="single-product">
+                      <div class="part-1">
+                          <ul>
+                            <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
+                            <li><a href="#"><img src="/heart.svg" alt="heart" width="15px" height="15px"></a></li>
+                            <li><a href="#"><img src="/fullscreen.svg" alt="maximize icon" width="15px" height="15px"></a></li>
+                          </ul>
+                      </div>
+                      <div class="part-2">
+                          <h3 class="product-title">Professional Running Shoes</h3>
+                          <h4 class="product-old-price">Rs.7999</h4>
+                          <h4 class="product-price">Rs.5999</h4>
+                      </div>
+                  </div>
+              </div>
+              <!-- Single Product -->
+              <div class="col-md-6 col-lg-4 col-xl-3">
+                  <div id="product-4" class="single-product">
+                      <div class="part-1">
+                          <span class="new">new</span>
+                          <ul>
+                            <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
+                            <li><a href="#"><img src="/heart.svg" alt="heart" width="15px" height="15px"></a></li>
+                            <li><a href="#"><img src="/fullscreen.svg" alt="maximize icon" width="15px" height="15px"></a></li>
+                          </ul>
+                      </div>
+                      <div class="part-2">
+                          <h3 class="product-title">Limited Edition Sports</h3>
+                          <h4 class="product-price">Rs.9999</h4>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Footer -->
+  <div class="container-fluid bg-body-tertiary">
+    <footer class="py-5">
+      <div class="row">
+        <div class="col-6 col-md-2 mb-3">
+          <h5>Our Company</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">Delivery</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">Legal Notice</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">Contact Us</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">About Us</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-2 mb-3">
+          <h5>Products</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">Price drop</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">New products</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">Best Sellers</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-2 mb-3">
+          <h5>Checkout</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">Cart</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">Payment method</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">Return policy</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">Terms of Service</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="col-md-5 offset-md-1 mb-3">
+          <form>
+            <h5>Subscribe to our newsletter</h5>
+            <p>Monthly digest of what's new and exciting from us.</p>
+            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+              <label for="newsletter1" class="visually-hidden">Email address</label>
+              <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+              <button class="btn btn-primary" type="button">Subscribe</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+        <div class="footer-content">
+            <a class="link-body-emphasis" href="#"><img src="/freshkicks_logo.png" alt="Fresh Kicks Icon" class="bi" width="150"></a><p>© 2023 FreshKicks, Inc. All rights reserved.</p>
+        </div>
+        <ul class="list-unstyled d-flex">
+          <li class="ms-3"><a class="link-body-emphasis" href="#"><img src="/github.svg" alt="Github" class="bi" width="24" height="24"></a></li>
+          <li class="ms-3"><a class="link-body-emphasis" href="#"><img src="/instagram.svg" alt="Instagram" class="bi" width="24" height="24"></a></li>
+          <li class="ms-3"><a class="link-body-emphasis" href="#"><img src="/facebook.svg" alt="Facebook" class="bi" width="24" height="24"></a></li>
+          <li class="ms-3"><a class="link-body-emphasis" href="#"><img src="/twitter.svg" alt="Twitter" class="bi" width="24" height="24"></a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+
+  <a id="back-to-top" href="#" class="btn btn-lg back-to-top" role="button">
+    <img src="/arrow-up.svg" alt="scroll to top arrow" width="35px" height="35px">
+  </a>
+
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
+    <script>
+      // JavaScript to open the dropdown on hover
+      $(document).on("mouseenter", "#hover-dropdown", function() {
+        var dropdownMenu = $(this).find(".dropdown-menu");
+        dropdownMenu.show();
+      });
+    
+      // JavaScript to close the dropdown when the mouse leaves
+      $(document).on("mouseleave", "#hover-dropdown", function() {
+        var dropdownMenu = $(this).find(".dropdown-menu");
+        dropdownMenu.hide();
+      });
+
+      $(document).ready(function(){
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+              $('#back-to-top').fadeIn();
+            } else {
+              $('#back-to-top').fadeOut();
+            }
+          });
+          // scroll body to 0px on click
+          $('#back-to-top').click(function () {
+            $('body,html').animate({
+              scrollTop: 0
+            }, 400);
+            return false;
+          });
+      });
+    </script>
+</body>
+</html>

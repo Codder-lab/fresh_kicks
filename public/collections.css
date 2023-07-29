@@ -1,0 +1,256 @@
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+}
+
+.h-custom {
+    height: calc(100% - 73px);
+}
+
+@media (max-width: 450px) {
+    .h-custom {
+    height: 100%;
+}
+}
+
+.bg-custom-1 {
+    background-color: #85144b;
+}
+  
+.bg-custom-2 {
+    background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+}
+
+#hover-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.card {
+    border: none;
+}
+
+a.footer {
+    color: #444444;
+}
+
+a.footer:hover {
+    color: #fe302f;
+}
+
+ul {
+    list-style: none;
+}
+
+a.nav-class {
+    color: #444444;
+}
+
+a.nav-class:hover {
+    color: #fe302f;
+}
+
+a.nav-class.active {
+    color: #fe302f;
+}
+
+#hover-default:hover .dropdown-menu {
+    display: block;
+}
+
+/* CSS to create a horizontal layout for the stars container */
+.rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a.text-body {
+    text-decoration: none;
+}
+
+.single-product {
+    margin-bottom: 26px;
+}
+
+.single-product .part-1 {
+    position: relative;
+    height: 290px;
+    max-height: 290px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.single-product .part-1::before {
+		position: absolute;
+		content: "";
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		transition: all 0.3s;
+}
+
+.single-product:hover .part-1::before {
+		transform: scale(1.2,1.2) rotate(5deg);
+}
+
+#product-1 .part-1::before {
+    background: url("/shoes-img12.png") no-repeat center;
+    background-size: cover;
+		transition: all 0.3s;
+}
+
+#product-2 .part-1::before {
+    background: url("/shoes-img8.png") no-repeat center;
+    background-size: cover;
+}
+
+#product-3 .part-1::before {
+    background: url("/shoes-img11.png") no-repeat center;
+    background-size: cover;
+}
+
+#product-4 .part-1::before {
+    background: url("/shoes-img10.png") no-repeat center;
+    background-size: cover;
+}
+
+#product-5 .part-1::before {
+    background: url("/shoes-img9.png") no-repeat center;
+    background-size: cover;
+}
+#product-6 .part-1::before {
+    background: url("/shoes-img14.png") no-repeat center;
+    background-size: cover;
+}
+
+#product-7 .part-1::before {
+    background: url("/shoes-img4.png") no-repeat center;
+    background-size: cover;
+}
+
+#product-8 .part-1::before {
+    background: url("/shoes-img13.png") no-repeat center;
+    background-size: cover;
+}
+
+.single-product .part-1 .discount,
+.single-product .part-1 .new {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    color: #ffffff;
+    background-color: #fe302f;
+    padding: 2px 8px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.single-product .part-1 .new {
+    left: 0;
+    background-color: #444444;
+}
+
+.single-product .part-1 ul {
+    position: absolute;
+    bottom: -41px;
+    left: 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    opacity: 0;
+    transition: bottom 0.5s, opacity 0.5s;
+}
+
+.single-product:hover .part-1 ul {
+    bottom: 30px;
+    opacity: 1;
+}
+
+.single-product .part-1 ul li {
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.single-product .part-1 ul li a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #ffffff;
+    color: #444444;
+    text-align: center;
+    box-shadow: 0 2px 20px rgb(50 50 50 / 10%);
+    transition: color 0.2s;
+}
+
+.single-product .part-1 ul li a:hover {
+    color: #fe302f;
+}
+
+.single-product .part-2 .product-title {
+    font-size: 1rem;
+}
+
+.single-product .part-2 h4 {
+    display: inline-block;
+    font-size: 1rem;
+}
+
+.single-product .part-2 .product-old-price {
+    position: relative;
+    padding: 0 7px;
+    margin-right: 2px;
+    opacity: 0.6;
+}
+
+.single-product .part-2 .product-old-price::after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #444444;
+    transform: translateY(-50%);
+}
+
+.page-link {
+    color: #fe302f;
+}
+
+.page-link.active {
+    background-color: #fe302f;
+    color: white;
+}
+
+.page-link:hover {
+    background-color: #fe302f;
+    color: #eee;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: none;
+}
+
+/* CSS to remove the focus outline on the button */
+.back-to-top:focus,
+.back-to-top:active {
+    outline: none;
+    border: none; /* Remove the default focus outline */
+}

@@ -48,6 +48,10 @@ app.get('/contact', (req, res) => {
   res.render('contact.ejs');
 })
 
+app.get('/about-us', (req, res) => {
+  res.render('about_us.ejs');
+})
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

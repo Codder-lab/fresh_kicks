@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 mongoose.set("strictQuery", false);
 
-mongoose.connect("mongodb://127.0.0.1:27017/fresh_kicks", {useNewUrlParser: true,})
+mongoose.connect(process.env.MONGODB_URL)
 .then(() => {
     console.log("mongodb connected");
 })

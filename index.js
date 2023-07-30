@@ -3,6 +3,8 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 const port = 3000;
+const db = require('./db/mongoose')
+const User = require('./models/user')
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());

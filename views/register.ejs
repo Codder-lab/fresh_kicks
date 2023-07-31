@@ -82,11 +82,11 @@
               <div class="row justify-content-center">
                 <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                   <p class="text-center h1 fw-bold mb-5 mt-4">Sign up</p>
-                  <form>
+                  <form method="post" action="/register">
                     <div class="form-floating mb-4">
-                      <input type="text" id="full-name" name="full-name" class="form-control form-control-lg"
+                      <input type="text" id="fullName" name="fullName" class="form-control form-control-lg"
                         placeholder="Enter Full Name" required/>
-                      <label class="form-label" for="full-name">Full Name</label>
+                      <label class="form-label" for="fullName">Full Name</label>
                     </div>
                     <div class="form-floating mb-4">
                       <input type="email" id="email" name="email" class="form-control form-control-lg"
@@ -99,18 +99,18 @@
                       <label class="form-label" for="password">Password</label>
                     </div>
                     <div class="form-floating mb-4">
-                      <input type="password" id="confirm-password" name="confirm-password" class="form-control form-control-lg"
+                      <input type="password" id="confirm_password" name="confirm_password" class="form-control form-control-lg"
                         placeholder="Enter your password again" required/>
-                      <label class="form-label" for="confirm-password">Confirm Password</label>
+                      <label class="form-label" for="confirm_password">Confirm Password</label>
                     </div>
                     <div class="form-check d-flex mb-5">
-                      <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c">
+                      <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" required>
                       <label class="form-check-label" for="form2Example3">
                         I agree all statements in <a href="#!">Terms of service</a>
                       </label>
                     </div>
                     <div class="d-flex mb-3 mb-lg-4">
-                      <button type="button" class="btn btn-danger btn-lg">Register</button>
+                      <button type="submit" class="btn btn-danger btn-lg">Register</button>
                     </div>
                   </form>
                 </div>

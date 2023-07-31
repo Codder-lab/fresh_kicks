@@ -8,6 +8,7 @@ const db = require('./db/mongoose')
 const User = require('./models/user')
 const SECRET_KEY = 'suyash1303';
 const jwt = require('jsonwebtoken')
+const cookieParser = require('cookie-parser')
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
@@ -30,7 +31,7 @@ app.get('/login', (req, res) => {
 
 // Handle user login submission
 app.post('/login', async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, rememberMe } = req.body;
 
   try {
     //Find the user with the provided email in the database
@@ -44,14 +45,18 @@ app.post('/login', async (req, res) => {
     const isPasswordMatch = await bcrypt.compare(password, user.password);
 
     if (!isPasswordMatch) {
-      return res.status(401).json({ erro: 'Invalid credentials! '});
+      return res.status(401).json({ error: 'Invalid credentials! '});
     }
 
+    // If "Remember Me" is checked, generate a JSON Web Token (JWT) for authentication
+    if (rememberMe) {
+      // Generate a JSON Web Token (JWT) for authentication
+      const token = jwt.sign({ _id: user._id }, SECRET_KEY, { expiresIn: '30d' });
+      res.cookie('rememberMeToken', token, { maxAge: 30 * 24 * 60 * 60 * 1000 }); // Set the token as a cookie
+    } 
+    
     res.redirect('/');
-
-    // Generate a JSON Web Token (JWT) for authentication
-    const token = jwt.sign({ _id: user._id }, SECRET_KEY);
-    console.log('User Login Successfull', token);
+    console.log('User Login Successfull');
   } catch (error) {
     console.error('Error during login', error);
     res.status(500).json({ error: 'Server error' });

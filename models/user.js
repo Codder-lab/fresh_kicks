@@ -36,7 +36,15 @@ const userSchema = new mongoose.Schema({
             type: String,
             required: true
         }
-    }]
+    }],
+    rememberMeToken: {
+        type: String,
+        default: null
+    },
+    rememberMeTokenExpiration: {
+        type: Date,
+        default: null
+    }
 }, {
     timestamps: true
 })

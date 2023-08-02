@@ -9,6 +9,7 @@ const User = require('./models/user')
 const SECRET_KEY = 'suyash1303';
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
+const nodemailer = require('nodemailer')
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
@@ -61,6 +62,54 @@ app.post('/login', async (req, res) => {
     console.error('Error during login', error);
     res.status(500).json({ error: 'Server error' });
   }
+})
+
+app.get('/forgot-password', (req, res) => {
+  res.render('forgotPassword.ejs');
+})
+
+app.post('/forgot-password', async (req, res) => {
+  const { email } = req.body;
+
+  const user = await User.findOne({ email });
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+
+  const expiresIn = 60 * 60 * 24; // 24 hours
+  const resetToken = Math.random().toString(32).substring(7);
+  user.resetToken = resetToken;
+  user.resetTokenExpires = new Date(Date.now() + expiresIn * 1000);
+  await user.save();
+
+  res.redirect(`/reset-password/${resetToken}`);
+})
+
+app.get('/reset-password/:token', (req, res) => {
+  const { token } = req.params;
+  res.render('resetPassword.ejs', { token });
+})
+
+app.post('/reset-password/:token', async (req, res) => {
+  const { token } = req.params;
+  const { password } = req.body;
+
+  const user = await User.findOne({ resetToken: token });
+  if (!user) {
+    return res.status(400).json({ error: 'Invalid reset token' });
+  }
+
+  if (user.resetTokenExpires < Date.now()) {
+    return res.status(400).json({ error: 'Reset token has expired' });
+  }
+
+  const saltRounds = 10;
+  user.password = await bcrypt.hash(password, saltRounds);
+  user.resetToken = null;
+  await user.save();
+
+  res.redirect('/login');
+  console.log('Password Reset Successful');
 })
 
 app.get('/register', (req, res) => {

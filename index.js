@@ -9,13 +9,19 @@ const User = require('./models/user')
 const SECRET_KEY = 'suyash1303';
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
-const nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer');
+const session = require('express-session');
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(express.urlencoded({extended: true}))
 app.use(express.static(__dirname + '/assets'))
 app.use(express.json());
+app.use(session({
+  secret: 'suyash1303',
+  resave: false,
+  saveUninitialized: true
+}));
 
 // Set the view engine
 app.set('views', [path.join(__dirname, 'views'), __dirname]);
@@ -23,7 +29,9 @@ app.set('view engine', 'ejs');
 
 // Set up a route to serve the login form
 app.get('/', (req, res) => {
-  res.render('index.ejs');
+  const fullName = req.session.fullName || '';
+  
+  res.render('index.ejs', { fullName });
 });
 
 app.get('/login', (req, res) => {
@@ -55,8 +63,10 @@ app.post('/login', async (req, res) => {
       const token = jwt.sign({ _id: user._id }, SECRET_KEY, { expiresIn: '30d' });
       res.cookie('rememberMeToken', token, { maxAge: 30 * 24 * 60 * 60 * 1000 }); // Set the token as a cookie
     } 
-    
-    res.redirect('/');
+
+    req.session.fullName = user.fullName;
+
+    res.render('index.ejs', { fullName: user.fullName });
     console.log('User Login Successfull');
   } catch (error) {
     console.error('Error during login', error);

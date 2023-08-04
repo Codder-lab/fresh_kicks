@@ -48,20 +48,18 @@
                     <input class="form-control me-xl-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-primary" type="submit"><img src="/search.svg" alt="cart-icon" class="bi" width="24" height="24"></button>
                   </form>
-                  <ul class="navbar-nav justify-content-end flex-grow-1 mt-sm-3 mb-xl-3 mb-lg-3 ms-xl-5">
-                    <li class="nav-item">
-                      <a class="nav-link" href="#"><img src="/cart.svg" alt="cart-icon" class="d-none d-md-none d-lg-block d-xl-block" width="30" height="30"></a>
-                    </li>
-                  </ul>
-                  <div class="collapse navbar-collapse" id="navbar-list-4">
+                  <div class="collapse navbar-collapse px-5" id="navbar-list-4">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown" id="hover-dropdown">
                         <a class="nav-link link-body-emphasis text-decoration-none dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <img src="/person-circle.svg" width="40" height="40" class="rounded-circle">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                          <% if (fullName) { %>
+                            <p>Hello, <%= fullName %>!</p>
+                          <% } %>
                           <a class="dropdown-item" href="/login">Log In</a>
-                          <a class="dropdown-item" href="#">My Orders</a>
+                          <a class="dropdown-item" href="#">My Cart</a>
                           <a class="dropdown-item" href="#">Edit Profile</a>
                           <a class="dropdown-item" href="#">Log Out</a>
                         </div>

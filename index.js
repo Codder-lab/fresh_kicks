@@ -35,7 +35,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-  res.render('login.ejs');
+  const fullName = req.session.fullName || '';
+  res.render('login.ejs', { fullName });
 });
 
 // Handle user login submission
@@ -75,7 +76,9 @@ app.post('/login', async (req, res) => {
 })
 
 app.get('/forgot-password', (req, res) => {
-  res.render('forgotPassword.ejs');
+  const fullName = req.session.fullName || '';
+
+  res.render('forgotPassword.ejs', { fullName });
 })
 
 app.post('/forgot-password', async (req, res) => {
@@ -96,8 +99,9 @@ app.post('/forgot-password', async (req, res) => {
 })
 
 app.get('/reset-password/:token', (req, res) => {
+  const fullName = req.session.fullName || '';
   const { token } = req.params;
-  res.render('resetPassword.ejs', { token });
+  res.render('resetPassword.ejs', { token }, { fullName });
 })
 
 app.post('/reset-password/:token', async (req, res) => {
@@ -123,7 +127,9 @@ app.post('/reset-password/:token', async (req, res) => {
 })
 
 app.get('/register', (req, res) => {
-  res.render('register.ejs');
+  const fullName = req.session.fullName || '';
+
+  res.render('register.ejs', { fullName });
 });
 
 app.post('/register', async (req, res) => {
@@ -161,15 +167,18 @@ app.post('/register', async (req, res) => {
 })
 
 app.get('/collections', (req, res) => {
-  res.render('collections.ejs');
+  const fullName = req.session.fullName || '';
+  res.render('collections.ejs', { fullName });
 })
 
 app.get('/contact', (req, res) => {
-  res.render('contact.ejs');
+  const fullName = req.session.fullName || '';
+  res.render('contact.ejs', { fullName });
 })
 
 app.get('/about-us', (req, res) => {
-  res.render('about_us.ejs');
+  const fullName = req.session.fullName || '';
+  res.render('about_us.ejs', { fullName });
 })
 
 app.listen(port, () => {

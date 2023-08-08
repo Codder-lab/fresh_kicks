@@ -167,17 +167,35 @@ app.post('/register', async (req, res) => {
   }
 })
 
-app.get('/collections',async (req, res) => {
+app.get('/collections', async (req, res) => {
   try {
     const fullName = req.session.fullName || '';
 
     const products = await Product.find();
 
+    products.forEach(product => {
+      product.image_url = `${product.product_name}.png`;
+    });
+
     res.render('collections.ejs', { fullName, products });
-} catch(error) {
+  } catch(error) {
     console.error('Error fetching products: ', error);
   }
-})
+});
+
+app.post('/collections', async (req, res) => {
+  try {
+      const productData = req.body; // Assuming the request body contains product data
+
+      // Create a new product in the database
+      const newProduct = await Product.create(productData);
+
+      res.json(newProduct);
+  } catch (error) {
+      console.error('Error creating product: ', error);
+      res.status(500).json({ error: 'Server Error' });
+  }
+});
 
 app.get('/contact', (req, res) => {
   const fullName = req.session.fullName || '';

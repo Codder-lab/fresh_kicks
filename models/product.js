@@ -20,6 +20,10 @@ const productSchema = new mongoose.Schema({
     },
     new: {
         type: Boolean
+    },
+    image_url: {
+        type: String,
+        required: true
     }
 })
 

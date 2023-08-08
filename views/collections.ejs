@@ -131,12 +131,15 @@
       <!-- Main Content -->
       <div class="container-fluid row py-5 mx-0">
         <!-- Single Product -->
-        <% products.forEach(product => { %>
+        <% products.forEach((product, index) => { %>
         <div class="col-md-6 col-lg-4 col-xl-3">
-            <div id="product-<% product._id %>" class="single-product">
-                <div class="part-1">
+            <div id="product-<% index + 1 %>" class="single-product">
+                <div class="part-1" style="background: url('/<%= product.image_url %>') no-repeat center; background-size: cover">
                   <% if(product.discount) { %>
                     <span class="discount">sale</span>
+                  <% } %>
+                  <% if(product.new) { %>
+                    <span class="new">New</span>
                   <% } %>
                     <ul>
                         <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
@@ -154,127 +157,7 @@
             </div>
         </div>
         <% }); %>
-        <!-- Single Product -->
-        <div class="col-md-6 col-lg-4 col-xl-3">
-            <div id="product-2" class="single-product">
-                <div class="part-1">
-                    <ul>
-                      <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
-                      <li><a href="#"><img src="/heart.svg" alt="heart" width="15px" height="15px"></a></li>
-                      <li><a href="#"><img src="/fullscreen.svg" alt="maximize icon" width="15px" height="15px"></a></li>
-                    </ul>
-                </div>
-                <div class="part-2">
-                    <h3 class="product_title">High Top Casuals</h3>
-                    <h4 class="product_price">Rs.7999</h4>
-                </div>
-            </div>
-        </div>
-        <!-- Single Product -->
-        <div class="col-md-6 col-lg-4 col-xl-3">
-            <div id="product-3" class="single-product">
-                <div class="part-1">
-                    <span class="discount">sale</span>
-                    <ul>
-                      <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
-                      <li><a href="#"><img src="/heart.svg" alt="heart" width="15px" height="15px"></a></li>
-                      <li><a href="#"><img src="/fullscreen.svg" alt="maximize icon" width="15px" height="15px"></a></li>
-                    </ul>
-                </div>
-                <div class="part-2">
-                    <h3 class="product_title">Professional Running Shoes</h3>
-                    <h4 class="product_old_price">Rs.7999</h4>
-                    <h4 class="product_price">Rs.5999</h4>
-                </div>
-            </div>
-        </div>
-        <!-- Single Product -->
-        <div class="col-md-6 col-lg-4 col-xl-3">
-            <div id="product-4" class="single-product">
-                <div class="part-1">
-                    <span class="new">new</span>
-                    <ul>
-                      <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
-                      <li><a href="#"><img src="/heart.svg" alt="heart" width="15px" height="15px"></a></li>
-                      <li><a href="#"><img src="/fullscreen.svg" alt="maximize icon" width="15px" height="15px"></a></li>
-                    </ul>
-                </div>
-                <div class="part-2">
-                    <h3 class="product_title">Limited Edition Sports</h3>
-                    <h4 class="product_price">Rs.9999</h4>
-                </div>
-            </div>
-        </div>
-
-        <!-- Single Product -->
-        <div class="col-md-6 col-lg-4 col-xl-3">
-            <div id="product-5" class="single-product">
-                <div class="part-1">
-                    <span class="discount">sale</span>
-                    <ul>
-                        <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
-                        <li><a href="#"><img src="/heart.svg" alt="heart" width="15px" height="15px"></a></li>
-                        <li><a href="#"><img src="/fullscreen.svg" alt="maximize icon" width="15px" height="15px"></a></li>
-                    </ul>
-                </div>
-                <div class="part-2">
-                    <h3 class="product_title">Air Pro Sneakers</h3>
-                    <h4 class="product_old_price">Rs.6999</h4>
-                    <h4 class="product_price">Rs.4999</h4>
-                </div>
-            </div>
-        </div>
-        <!-- Single Product -->
-        <div class="col-md-6 col-lg-4 col-xl-3">
-            <div id="product-6" class="single-product">
-                <div class="part-1">
-                    <ul>
-                      <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
-                      <li><a href="#"><img src="/heart.svg" alt="heart" width="15px" height="15px"></a></li>
-                      <li><a href="#"><img src="/fullscreen.svg" alt="maximize icon" width="15px" height="15px"></a></li>
-                    </ul>
-                </div>
-                <div class="part-2">
-                    <h3 class="product_title">Casual Running Sneakers</h3>
-                    <h4 class="product_price">Rs.7999</h4>
-                </div>
-            </div>
-        </div>
-        <!-- Single Product -->
-        <div class="col-md-6 col-lg-4 col-xl-3">
-            <div id="product-7" class="single-product">
-                <div class="part-1">
-                    <span class="discount">sale</span>
-                    <ul>
-                      <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
-                      <li><a href="#"><img src="/heart.svg" alt="heart" width="15px" height="15px"></a></li>
-                      <li><a href="#"><img src="/fullscreen.svg" alt="maximize icon" width="15px" height="15px"></a></li>
-                    </ul>
-                </div>
-                <div class="part-2">
-                    <h3 class="product_title">Sports Shoes</h3>
-                    <h4 class="product_old_price">Rs.5999</h4>
-                    <h4 class="product_price">Rs.3999</h4>
-                </div>
-            </div>
-        </div>
-        <!-- Single Product -->
-        <div class="col-md-6 col-lg-4 col-xl-3">
-            <div id="product-8" class="single-product">
-                <div class="part-1">
-                    <span class="new">new</span>
-                    <ul>
-                      <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
-                      <li><a href="#"><img src="/heart.svg" alt="heart" width="15px" height="15px"></a></li>
-                      <li><a href="#"><img src="/fullscreen.svg" alt="maximize icon" width="15px" height="15px"></a></li>
-                    </ul>
-                </div>
-                <div class="part-2">
-                    <h3 class="product_title">Neo Sports Sneakers</h3>
-                    <h4 class="product_price">Rs.9999</h4>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
     <div class="container-fluid row">
         <div class="col d-flex justify-content-center">

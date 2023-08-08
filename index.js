@@ -6,6 +6,7 @@ const port = 3000;
 const bcrypt = require('bcrypt')
 const db = require('./db/mongoose')
 const User = require('./models/user')
+const Product = require('./models/product')
 const SECRET_KEY = 'suyash1303';
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
@@ -166,9 +167,16 @@ app.post('/register', async (req, res) => {
   }
 })
 
-app.get('/collections', (req, res) => {
-  const fullName = req.session.fullName || '';
-  res.render('collections.ejs', { fullName });
+app.get('/collections',async (req, res) => {
+  try {
+    const fullName = req.session.fullName || '';
+
+    const products = await Product.find();
+
+    res.render('collections.ejs', { fullName, products });
+} catch(error) {
+    console.error('Error fetching products: ', error);
+  }
 })
 
 app.get('/contact', (req, res) => {

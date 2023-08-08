@@ -200,7 +200,7 @@ a.text-body {
     color: #fe302f;
 }
 
-.single-product .part-2 .product-title {
+.single-product .part-2 .product_title {
     font-size: 1rem;
 }
 
@@ -209,14 +209,14 @@ a.text-body {
     font-size: 1rem;
 }
 
-.single-product .part-2 .product-old-price {
+.single-product .part-2 .product_old_price {
     position: relative;
     padding: 0 7px;
     margin-right: 2px;
     opacity: 0.6;
 }
 
-.single-product .part-2 .product-old-price::after {
+.single-product .part-2 .product_old_price::after {
     position: absolute;
     content: "";
     top: 50%;

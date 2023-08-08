@@ -131,10 +131,13 @@
       <!-- Main Content -->
       <div class="container-fluid row py-5 mx-0">
         <!-- Single Product -->
+        <% products.forEach(product => { %>
         <div class="col-md-6 col-lg-4 col-xl-3">
-            <div id="product-1" class="single-product">
+            <div id="product-<% product._id %>" class="single-product">
                 <div class="part-1">
+                  <% if(product.discount) { %>
                     <span class="discount">sale</span>
+                  <% } %>
                     <ul>
                         <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
                         <li><a href="#"><img src="/heart.svg" alt="heart" width="15px" height="15px"></a></li>
@@ -142,12 +145,15 @@
                     </ul>
                 </div>
                 <div class="part-2">
-                    <h3 class="product_title">Pro Basketball Shoes</h3>
-                    <h4 class="product_old_price">Rs.9999</h4>
-                    <h4 class="product_price">Rs.8999</h4>
+                    <h3 class="product_title"><%= product.product_title %></h3>
+                    <% if(product.product_old_price) { %>
+                      <h4 class="product_old_price">Rs.<%= product.product_old_price %></h4>
+                    <% } %>
+                    <h4 class="product_price">Rs.<%= product.product_price %></h4>
                 </div>
             </div>
         </div>
+        <% }); %>
         <!-- Single Product -->
         <div class="col-md-6 col-lg-4 col-xl-3">
             <div id="product-2" class="single-product">

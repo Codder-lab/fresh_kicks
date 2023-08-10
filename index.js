@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt')
 const db = require('./db/mongoose')
 const User = require('./models/user')
 const Product = require('./models/product')
+const ProductDetails = require('./models/productDetails')
 const SECRET_KEY = 'suyash1303';
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
@@ -205,6 +206,11 @@ app.get('/contact', (req, res) => {
 app.get('/about-us', (req, res) => {
   const fullName = req.session.fullName || '';
   res.render('about_us.ejs', { fullName });
+})
+
+app.get('/product', async (req, res) => {
+  const fullName = req.session.fullName || '';
+  res.render('productDetails.ejs', { fullName });
 })
 
 app.listen(port, () => {

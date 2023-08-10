@@ -133,6 +133,7 @@
         <!-- Single Product -->
         <% products.forEach((product, index) => { %>
         <div class="col-md-6 col-lg-4 col-xl-3">
+          <a href="/product/<%= product._id %>" class="product-link"></a>
             <div id="product-<% index + 1 %>" class="single-product">
                 <div class="part-1" style="background: url('/<%= product.image_url %>') no-repeat center; background-size: cover">
                   <% if(product.discount) { %>
@@ -175,7 +176,7 @@
         </div>
       </div>
 
-      <!-- Footer -->
+  <!-- Footer -->
   <div class="container-fluid bg-body-tertiary">
     <footer class="py-5">
       <div class="row">

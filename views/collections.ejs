@@ -133,7 +133,6 @@
         <!-- Single Product -->
         <% products.forEach((product, index) => { %>
         <div class="col-md-6 col-lg-4 col-xl-3">
-          <a href="/product/<%= product._id %>" class="product-link"></a>
             <div id="product-<% index + 1 %>" class="single-product">
                 <div class="part-1" style="background: url('/<%= product.image_url %>') no-repeat center; background-size: cover">
                   <% if(product.discount) { %>
@@ -145,7 +144,7 @@
                     <ul>
                         <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
                         <li><a href="#"><img src="/heart.svg" alt="heart" width="15px" height="15px"></a></li>
-                        <li><a href="#"><img src="/fullscreen.svg" alt="maximize icon" width="15px" height="15px"></a></li>
+                        <li><a href="/product/<%= product._id %>"><img src="/fullscreen.svg" alt="maximize icon" width="15px" height="15px"></a></li>
                     </ul>
                 </div>
                 <div class="part-2">

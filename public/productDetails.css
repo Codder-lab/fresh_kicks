@@ -144,7 +144,6 @@ img {
 
 .card {
     margin-top: 50px;
-    background: #eee;
     padding: 3em;
     line-height: 1.5em; 
 }
@@ -191,6 +190,35 @@ img {
   
 .product_title {
     margin-top: 0; 
+    color: #fe302f;
+}
+
+.product_old_price {
+    position: relative;
+    padding: 0 7px;
+    margin-right: 2px;
+    opacity: 0.6;
+}
+
+.product_old_price::after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #444444;
+    transform: translateY(-50%);
+}
+
+.price-container {
+    display: flex; /* Display the prices in a row */
+    align-items: center; /* Vertically center the prices */
+}
+
+.product_old_price,
+.product_price {
+    margin-right: 10px; /* Add some spacing between the prices */
 }
 
 .size {

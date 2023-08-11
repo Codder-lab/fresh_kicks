@@ -13,6 +13,9 @@ const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 const nodemailer = require('nodemailer');
 const session = require('express-session');
+const productDetails = require('./models/productDetails');
+const mongoose = require('mongoose')
+const ObjectId = mongoose.Types.ObjectId;
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
@@ -208,9 +211,37 @@ app.get('/about-us', (req, res) => {
   res.render('about_us.ejs', { fullName });
 })
 
-app.get('/product', async (req, res) => {
-  const fullName = req.session.fullName || '';
-  res.render('productDetails.ejs', { fullName });
+app.get('/product/:productId', async (req, res) => {
+  try {
+    const fullName = req.session.fullName || '';
+    const productId = req.params.productId;
+    if (!ObjectId.isValid(productId)) {
+      return res.status(400).json({ error: 'Invalid product ID' });
+    }
+
+    // Fetch the product details from the database
+    const product = await Product.findById(productId);
+    product.image_url = product.image_url.split(',');
+
+    res.render('productDetails.ejs', { product, fullName });
+  } catch (error) {
+    console.error('Error fetching product details: ', error);
+    res.status(500).json({ error: 'Server Error' });
+  }
+})
+
+app.post('/product', async (req, res) => {
+  try {
+    const productData = req.body; // Assuming the request body contains product data
+
+    // Create a new product in the database
+    const newProduct = await Product.create(productData);
+
+    res.json(newProduct);
+  } catch (error) {
+    console.error('Error creating product: ', error);
+    res.status(500).json({ error: 'Server Error' });
+  }
 })
 
 app.listen(port, () => {

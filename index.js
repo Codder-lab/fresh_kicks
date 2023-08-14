@@ -7,13 +7,11 @@ const bcrypt = require('bcrypt')
 const db = require('./db/mongoose')
 const User = require('./models/user')
 const Product = require('./models/product')
-const ProductDetails = require('./models/productDetails')
 const SECRET_KEY = 'suyash1303';
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 const nodemailer = require('nodemailer');
 const session = require('express-session');
-const productDetails = require('./models/productDetails');
 const mongoose = require('mongoose')
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -174,14 +172,21 @@ app.post('/register', async (req, res) => {
 app.get('/collections', async (req, res) => {
   try {
     const fullName = req.session.fullName || '';
+    const selectedCategory = req.query.category || ''; // Get the selected category from query parameter
 
-    const products = await Product.find();
+    let query = {};
+
+    if (selectedCategory) {
+      query = { category: selectedCategory };
+    }
+
+    const products = await Product.find(query);
 
     products.forEach(product => {
       product.image_url = `${product.product_name}.png`;
     });
 
-    res.render('collections.ejs', { fullName, products });
+    res.render('collections.ejs', { fullName, products, selectedCategory });
   } catch(error) {
     console.error('Error fetching products: ', error);
   }
@@ -198,6 +203,26 @@ app.post('/collections', async (req, res) => {
   } catch (error) {
       console.error('Error creating product: ', error);
       res.status(500).json({ error: 'Server Error' });
+  }
+});
+
+app.post('/update', async (req, res) => {
+  try {
+    const result = await Product.updateOne(
+      { product_name: 'product_4' }, // The condition to match
+      { $set: { category: 'Limited Edition' } } // The new field and its value
+    );
+
+    console.log('Result:', result);
+
+    if (result.ok) {
+      res.json({ message: `${result.nModified} documents updated.` });
+    } else {
+      res.status(500).json({ error: 'Update operation failed.' });
+    }
+  } catch (error) {
+    console.error('Error updating documents:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 

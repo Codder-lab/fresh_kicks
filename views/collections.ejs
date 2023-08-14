@@ -80,11 +80,11 @@
             <div class="col-12 col-md">
               <!-- Categories -->
               <nav class="nav nav-overflow mb-6 mb-md-0">
-                <a class="nav-link active nav-class" data-bs-toggle="tab" href="#">All</a>
-                <a class="nav-link nav-class" data-bs-toggle="tab" href="#">Sports</a>
-                <a class="nav-link nav-class" data-bs-toggle="tab" href="#">Running</a>
-                <a class="nav-link nav-class" data-bs-toggle="tab" href="#">Casuals</a>
-                <a class="nav-link nav-class" data-bs-toggle="tab" href="#">Limited Edition</a>
+                <a class="nav-link active nav-class" data-bs-toggle="tab" href="/collections">All</a>
+                <a class="nav-link nav-class" data-bs-toggle="tab" href="/collections?category=Sports<%= selectedCategory === 'Sports' ? '&selected=true' : '' %>">Sports</a>
+                <a class="nav-link nav-class" data-bs-toggle="tab" href="/collections?category=Running<%= selectedCategory === 'Running' ? '&selected=true' : '' %>">Running</a>
+                <a class="nav-link nav-class" data-bs-toggle="tab" href="/collections?category=Casuals<%= selectedCategory === 'Casuals' ? '&selected=true' : '' %>">Casuals</a>
+                <a class="nav-link nav-class" data-bs-toggle="tab" href="/collections?category=Limited%20Edition<%= selectedCategory === 'Limited Edition' ? '&selected=true' : '' %>">Limited Edition</a>
               </nav>
             </div>
             <div class="col-12 col-md-auto d-flex align-items-center justify-content-center px-4">
@@ -112,7 +112,7 @@
                         </div>
                         <div class="form-check form-check-text mb-3">
                           <input class="form-check-input" id="sortFour" name="sort" type="radio" value="Default Price">
-                          <label class="form-check-label" for="sortFour">Loxwest Price</label>
+                          <label class="form-check-label" for="sortFour">Lowest Price</label>
                         </div>
                         <div class="form-check form-check-text">
                           <input class="form-check-input" id="sortFive" name="sort" type="radio" value="Highest Price">

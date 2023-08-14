@@ -99,11 +99,11 @@ a.text-body {
 		width: 100%;
 		height: 100%;
 		z-index: -1;
-		transition: all 0.3s;
+		transition: all 0.5s all ease-in-out;
 }
 
 .single-product:hover .part-1::before {
-		transform: scale(1.2, 1.2) rotate(5deg);
+		transform: scale(1.2);
 }
 /*
 #product-1 .part-1::before {
@@ -234,11 +234,7 @@ a.text-body {
 .page-link.active {
     background-color: #fe302f;
     color: white;
-}
-
-.page-link:hover {
-    background-color: #fe302f;
-    color: #eee;
+    border-color: #fe302f;
 }
 
 .back-to-top {

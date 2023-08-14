@@ -106,10 +106,22 @@
             <% } %>
             <div class="size d-flex pt-2">
               <h5 class="sizes">sizes:
-                <span class="size" data-toggle="tooltip" title="small">s</span>
-                <span class="size" data-toggle="tooltip" title="medium">m</span>
-                <span class="size" data-toggle="tooltip" title="large">l</span>
-                <span class="size" data-toggle="tooltip" title="xtra large">xl</span>
+                <label class="size-label">
+                  <input type="radio" name="size" value="s">
+                  <span class="size-toggle" data-toggle="tooltip" title="small">s</span>
+                </label>
+                <label class="size-label">
+                  <input type="radio" name="size" value="m">
+                  <span class="size-toggle" data-toggle="tooltip" title="medium">m</span>
+                </label>
+                <label class="size-label">
+                  <input type="radio" name="size" value="l">
+                  <span class="size-toggle" data-toggle="tooltip" title="large">l</span>
+                </label>
+                <label class="size-label">
+                  <input type="radio" name="size" value="xl">
+                  <span class="size-toggle" data-toggle="tooltip" title="xtra large">xl</span>
+                </label>
               </h5>
             </div>
             <div class="action">
@@ -215,6 +227,15 @@
             }, 400);
             return false;
           });
+      });
+
+      const sizeToggleButtons = document.querySelectorAll('.size-toggle');
+
+      sizeToggleButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          sizeToggleButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+        });
       });
     </script>
 </body>

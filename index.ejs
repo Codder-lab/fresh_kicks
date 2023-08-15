@@ -129,116 +129,37 @@
 
     <div class="container-fluid my-5">
       <header class="new-arrivals row justify-content-center text-center mb-4 mx-3">
-        <h3 style="font-weight: bolder">NEW ARRIVALS</h3>
-        <h6 class="text-muted">Just in now</h6>
+        <h3 style="font-weight: bolder">BEST SELLER</h3>
+        <h6 class="text-muted">Top Sellers of the Month</h6>
       </header>
-      <div class="row bg-body-tertiary">
-        <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card my-2 shadow-0">
-            <a href="#" class="">
-              <div class="mask" style="height: 30px;">
-                <div class="d-flex justify-content-start align-items-start h-100 m-2">
-                  <h6><span class="badge bg-danger pt-1">New</span></h6>
-                </div>
+      <div class="container-fluid row py-5 mx-0y">
+        <!-- Single Product -->
+        <% products.forEach((product, index) => { %>
+          <div class="col-md-6 col-lg-4 col-xl-3">
+              <div id="product-<% index + 1 %>" class="single-product">
+                  <div class="part-1" style="background: url('/<%= product.image_url %>') no-repeat center; background-size: cover">
+                    <% if(product.discount) { %>
+                      <span class="discount">sale</span>
+                    <% } %>
+                    <% if(product.new) { %>
+                      <span class="new">New</span>
+                    <% } %>
+                      <ul>
+                          <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
+                          <li><a href="#"><img src="/heart.svg" alt="heart" width="15px" height="15px"></a></li>
+                          <li><a href="/product/<%= product._id %>"><img src="/fullscreen.svg" alt="maximize icon" width="15px" height="15px"></a></li>
+                      </ul>
+                  </div>
+                  <div class="part-2">
+                      <h3 class="product_title"><%= product.product_title %></h3>
+                      <% if(product.product_old_price) { %>
+                        <h4 class="product_old_price">Rs.<%= product.product_old_price %></h4>
+                      <% } %>
+                      <h4 class="product_price">Rs.<%= product.product_price %></h4>
+                  </div>
               </div>
-              <img src="/shoes-img1.png" class="card-img-top rounded-2" width="250" height="250">
-            </a>
-            <div class="card-body p-0 pt-3">
-              <a href="#!" class="heart px-2 pt-2 pt-xl-2 float-end icon-hover"><img src="/heart.svg" alt="heart" width="24" height="24" class="bi"></a>
-              <h5 class="card-title">Rs. 2999</h5>
-              <p class="card-text mb-0">Running Shoes</p>
-            </div>
           </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card my-2 shadow-0">
-            <a href="#" class="">
-              <div class="mask" style="height: 40px;">
-                <div class="d-flex justify-content-start align-items-start h-100 m-2">
-                  <h6><span class="badge pt-1" style="background-color: #f87217;">Offer</span></h6>
-                </div>
-              </div>
-              <img src="/product_7.png" class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" width="250" height="250">
-            </a>
-            <div class="card-body p-0 pt-2">
-              <a href="#!" class="heart pt-2 px-2 float-end icon-hover"><img src="/heart.svg" alt="heart" width="24" height="24" class="bi"></a>
-              <h5 class="card-title">Rs. 3999</h5>
-              <p class="card-text mb-0">Sports Shoes</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card my-2 shadow-0">
-            <a href="#" class="py-2 pt-lg-3 py-xl-1">
-              <img src="/product_3.png" class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" width="250" height="250">
-            </a>
-            <div class="card-body p-0 py-2 pb-lg-0 pb-xl-0 pt-xl-4">
-              <a href="#!" class="heart px-2 pt-2 pt-xl-4 pb-xl-0 py-lg-4 float-end icon-hover"><img src="/heart.svg" alt="heart" width="24" height="24" class="bi"></a>
-              <h5 class="card-title">Rs. 5999</h5>
-              <p class="card-text mb-0">Professional Sports & Running Shoes</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card my-2 shadow-0">
-            <a href="#" class="py-2 py-xl-3 py-lg-3">
-              <img src="shoes-img3.png" class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" width="250" height="250">
-            </a>
-            <div class="card-body p-0 py-2 py-xl-2 pt-xl-2 pt-lg-3">
-              <a href="#!" class="heart pt-2 px-2 py-xl-3 float-end icon-hover"><img src="/heart.svg" alt="heart" width="24" height="24" class="bi"></a>
-              <h5 class="card-title pt-xl-2">Rs. 1999</h5>
-              <p class="card-text mb-0">Casual Sneakers</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card my-2 shadow-0">
-            <a href="#" class="py-xl-2 py-md-2">
-              <img src="/product_1.png" class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" width="250" height="250">
-            </a>
-            <div class="card-body p-0 pt-2 py-xl-2 pt-md-3">
-              <a href="#!" class="heart pt-2 px-2 pt-md-0 float-end icon-hover"><img src="/heart.svg" alt="heart" width="24" height="24" class="bi"></a>
-              <h5 class="card-title">Rs. 8999</h5>
-              <p class="card-text mb-0">Pro Basketball Shoes</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card my-2 shadow-0">
-            <a href="#" class="">
-              <img src="/shoes-img2.png" class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" width="250" height="250">
-            </a>
-            <div class="card-body p-0 pt-2">
-              <a href="#!" class="heart px-2 pt-2 pt-xl-4 pt-md-4 float-end icon-hover"><img src="/heart.svg" alt="heart" width="24" height="24" class="bi"></a>
-              <h5 class="card-title">Rs. 4999</h5>
-              <p class="card-text mb-0">Olive & Blue Limited Edition Running Shoes</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card my-2 shadow-0">
-            <a href="#" class="py-xl-2 py-md-2">
-              <img src="/product_5.png" class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" width="250" height="250">
-            </a>
-            <div class="card-body p-0 pt-2 py-xl-2 pt-md-3">
-              <a href="#!" class="heart pt-2 px-2 float-end icon-hover"><img src="/heart.svg" alt="heart" width="24" height="24" class="bi"></a>
-              <h5 class="card-title">Rs. 4999</h5>
-              <p class="card-text mb-0">Air Pro Sneakers</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card my-2 shadow-0">
-            <a href="#" class="">
-              <img src="/product_4.png" class="card-img-top rounded-2" style="aspect-ratio: 1 / 1" width="250" height="250">
-            </a>
-            <div class="card-body p-0 pt-2">
-              <a href="#!" class="heart px-2 pt-2 pt-xl-4 py-md-4 float-end icon-hover"><img src="/heart.svg" alt="heart" width="24" height="24" class="bi"></a>
-              <h5 class="card-title">Rs. 9999</h5>
-              <p class="card-text mb-0">Professional Limited Edition Sports Shoes</p>
-            </div>
-          </div>
-        </div>
+          <% }); %>
       </div>
     </div>
     <div class="bg-image hover-overlay ripple" data-bs-ripple-color="light">
@@ -296,89 +217,6 @@
         </div>
       </div>
     </div>
-
-    <section class="section-products">
-      <div class="container">
-          <div class="row justify-content-center text-center">
-              <div class="col-md-8 col-lg-6">
-                  <div class="header">
-                    <h3 style="font-weight: bolder">BEST SELLERS</h3>
-                    <h6 class="text-muted">Top Sellers of the Month</h6>
-                  </div>
-              </div>
-          </div>
-          <div class="row">
-              <!-- Single Product -->
-              <div class="col-md-6 col-lg-4 col-xl-3">
-                  <div id="product-1" class="single-product">
-                      <div class="part-1">
-                          <ul>
-                              <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
-                              <li><a href="#"><img src="/heart.svg" alt="heart" width="15px" height="15px"></a></li>
-                              <li><a href="#"><img src="/fullscreen.svg" alt="maximize icon" width="15px" height="15px"></a></li>
-                          </ul>
-                      </div>
-                      <div class="part-2">
-                          <h3 class="product-title">Pro Basketball Shoes</h3>
-                          <h4 class="product-old-price">Rs.9999</h4>
-                          <h4 class="product-price">Rs.8999</h4>
-                      </div>
-                  </div>
-              </div>
-              <!-- Single Product -->
-              <div class="col-md-6 col-lg-4 col-xl-3">
-                  <div id="product-2" class="single-product">
-                      <div class="part-1">
-                          <span class="discount">Best Seller</span>
-                          <ul>
-                            <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
-                            <li><a href="#"><img src="/heart.svg" alt="heart" width="15px" height="15px"></a></li>
-                            <li><a href="#"><img src="/fullscreen.svg" alt="maximize icon" width="15px" height="15px"></a></li>
-                          </ul>
-                      </div>
-                      <div class="part-2">
-                          <h3 class="product-title">High Top Casuals</h3>
-                          <h4 class="product-price">Rs.7999</h4>
-                      </div>
-                  </div>
-              </div>
-              <!-- Single Product -->
-              <div class="col-md-6 col-lg-4 col-xl-3">
-                  <div id="product-3" class="single-product">
-                      <div class="part-1">
-                          <ul>
-                            <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
-                            <li><a href="#"><img src="/heart.svg" alt="heart" width="15px" height="15px"></a></li>
-                            <li><a href="#"><img src="/fullscreen.svg" alt="maximize icon" width="15px" height="15px"></a></li>
-                          </ul>
-                      </div>
-                      <div class="part-2">
-                          <h3 class="product-title">Professional Running Shoes</h3>
-                          <h4 class="product-old-price">Rs.7999</h4>
-                          <h4 class="product-price">Rs.5999</h4>
-                      </div>
-                  </div>
-              </div>
-              <!-- Single Product -->
-              <div class="col-md-6 col-lg-4 col-xl-3">
-                  <div id="product-4" class="single-product">
-                      <div class="part-1">
-                          <span class="new">new</span>
-                          <ul>
-                            <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
-                            <li><a href="#"><img src="/heart.svg" alt="heart" width="15px" height="15px"></a></li>
-                            <li><a href="#"><img src="/fullscreen.svg" alt="maximize icon" width="15px" height="15px"></a></li>
-                          </ul>
-                      </div>
-                      <div class="part-2">
-                          <h3 class="product-title">Limited Edition Sports</h3>
-                          <h4 class="product-price">Rs.9999</h4>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section>
 
   <!-- Footer -->
   <div class="container-fluid bg-body-tertiary">

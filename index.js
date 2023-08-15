@@ -14,6 +14,7 @@ const nodemailer = require('nodemailer');
 const session = require('express-session');
 const mongoose = require('mongoose')
 const ObjectId = mongoose.Types.ObjectId;
+const _ = require('lodash')
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
@@ -31,10 +32,39 @@ app.set('views', [path.join(__dirname, 'views'), __dirname]);
 app.set('view engine', 'ejs');
 
 // Set up a route to serve the login form
-app.get('/', (req, res) => {
-  const fullName = req.session.fullName || '';
-  
-  res.render('index.ejs', { fullName });
+app.get('/', async (req, res) => {
+  try {
+    const fullName = req.session.fullName || '';
+    const limit = 8;
+
+    const products = await Product.find()
+      .limit(limit);
+
+    // Shuffle the array of products randomly
+    const shuffledProducts = _.shuffle(products);
+
+    products.forEach(product => {
+      product.image_url = `${product.product_name}.png`;
+    });
+
+    res.render('index.ejs', { fullName, products: shuffledProducts });
+  } catch(error) {
+    console.error('Error fetching products: ', error);
+  }
+});
+
+app.post('/', async (req, res) => {
+  try {
+    const productData = req.body; // Assuming the request body contains product data
+
+    // Create a new product in the database
+    const newProduct = await Product.create(productData);
+
+    res.json(newProduct);
+  } catch (error) {
+      console.error('Error creating product: ', error);
+      res.status(500).json({ error: 'Server Error' });
+  }
 });
 
 app.get('/login', (req, res) => {
@@ -182,11 +212,14 @@ app.get('/collections', async (req, res) => {
 
     const products = await Product.find(query);
 
+    // Shuffle the array of products randomly
+    const shuffledProducts = _.shuffle(products);
+
     products.forEach(product => {
       product.image_url = `${product.product_name}.png`;
     });
 
-    res.render('collections.ejs', { fullName, products, selectedCategory });
+    res.render('collections.ejs', { fullName, products: shuffledProducts, selectedCategory });
   } catch(error) {
     console.error('Error fetching products: ', error);
   }
@@ -209,8 +242,8 @@ app.post('/collections', async (req, res) => {
 app.post('/update', async (req, res) => {
   try {
     const result = await Product.updateOne(
-      { product_name: 'product_4' }, // The condition to match
-      { $set: { category: 'Limited Edition' } } // The new field and its value
+      { product_name: 'product_11' }, // The condition to match
+      { $set: { image_url: "/product_11.png" } } // The new field and its value
     );
 
     console.log('Result:', result);

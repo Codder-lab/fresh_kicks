@@ -123,11 +123,11 @@ a:hover {
     font-weight: bolder;
 }
 
-.section-products .single-product {
+.single-product {
     margin-bottom: 26px;
 }
 
-.section-products .single-product .part-1 {
+.single-product .part-1 {
     position: relative;
     height: 290px;
     max-height: 290px;
@@ -136,7 +136,7 @@ a:hover {
     cursor: pointer;
 }
 
-.section-products .single-product .part-1::before {
+.single-product .part-1::before {
 		position: absolute;
 		content: "";
 		top: 0;
@@ -144,36 +144,55 @@ a:hover {
 		width: 100%;
 		height: 100%;
 		z-index: -1;
-		transition: all 0.3s;
+		transition: all 0.5s all ease-in-out;
 }
 
-.section-products .single-product:hover .part-1::before {
-		transform: scale(1.2,1.2) rotate(5deg);
+.single-product:hover .part-1::before {
+		transform: scale(1.2);
 }
-
-.section-products #product-1 .part-1::before {
-    background: url("/product_1.png") no-repeat center;
+/*
+#product-1 .part-1::before {
+    background: url("/shoes-img12.png") no-repeat center;
     background-size: cover;
 		transition: all 0.3s;
 }
 
-.section-products #product-2 .part-1::before {
-    background: url("/product_2.png") no-repeat center;
+#product-2 .part-1::before {
+    background: url("/shoes-img8.png") no-repeat center;
     background-size: cover;
 }
 
-.section-products #product-3 .part-1::before {
-    background: url("/product_3.png") no-repeat center;
+#product-3 .part-1::before {
+    background: url("/shoes-img11.png") no-repeat center;
     background-size: cover;
 }
 
-.section-products #product-4 .part-1::before {
-    background: url("/product_4.png") no-repeat center;
+#product-4 .part-1::before {
+    background: url("/shoes-img10.png") no-repeat center;
     background-size: cover;
 }
 
-.section-products .single-product .part-1 .discount,
-.section-products .single-product .part-1 .new {
+#product-5 .part-1::before {
+    background: url("/shoes-img9.png") no-repeat center;
+    background-size: cover;
+}
+#product-6 .part-1::before {
+    background: url("/shoes-img14.png") no-repeat center;
+    background-size: cover;
+}
+
+#product-7 .part-1::before {
+    background: url("/shoes-img4.png") no-repeat center;
+    background-size: cover;
+}
+
+#product-8 .part-1::before {
+    background: url("/shoes-img13.png") no-repeat center;
+    background-size: cover;
+}
+*/
+.single-product .part-1 .discount,
+.single-product .part-1 .new {
     position: absolute;
     top: 15px;
     left: 20px;
@@ -184,12 +203,12 @@ a:hover {
     font-size: 0.85rem;
 }
 
-.section-products .single-product .part-1 .new {
+.single-product .part-1 .new {
     left: 0;
     background-color: #444444;
 }
 
-.section-products .single-product .part-1 ul {
+.single-product .part-1 ul {
     position: absolute;
     bottom: -41px;
     left: 20px;
@@ -200,17 +219,17 @@ a:hover {
     transition: bottom 0.5s, opacity 0.5s;
 }
 
-.section-products .single-product:hover .part-1 ul {
+.single-product:hover .part-1 ul {
     bottom: 30px;
     opacity: 1;
 }
 
-.section-products .single-product .part-1 ul li {
+.single-product .part-1 ul li {
     display: inline-block;
     margin-right: 4px;
 }
 
-.section-products .single-product .part-1 ul li a {
+.single-product .part-1 ul li a {
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -222,27 +241,27 @@ a:hover {
     transition: color 0.2s;
 }
 
-.section-products .single-product .part-1 ul li a:hover {
+.single-product .part-1 ul li a:hover {
     color: #fe302f;
 }
 
-.section-products .single-product .part-2 .product-title {
+.single-product .part-2 .product_title {
     font-size: 1rem;
 }
 
-.section-products .single-product .part-2 h4 {
+.single-product .part-2 h4 {
     display: inline-block;
     font-size: 1rem;
 }
 
-.section-products .single-product .part-2 .product-old-price {
+.single-product .part-2 .product_old_price {
     position: relative;
     padding: 0 7px;
     margin-right: 2px;
     opacity: 0.6;
 }
 
-.section-products .single-product .part-2 .product-old-price::after {
+.single-product .part-2 .product_old_price::after {
     position: absolute;
     content: "";
     top: 50%;

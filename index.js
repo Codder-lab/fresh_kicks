@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt')
 const db = require('./db/mongoose')
 const User = require('./models/user')
 const Product = require('./models/product')
+const Wishlist = require('./models/wishlist')
 const SECRET_KEY = 'suyash1303';
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
@@ -67,14 +68,15 @@ app.post('/', async (req, res) => {
   }
 });
 
-app.get('/login', (req, res) => {
+app.get('/login', async (req, res) => {
   const fullName = req.session.fullName || '';
+
   res.render('login.ejs', { fullName });
 });
 
 // Handle user login submission
 app.post('/login', async (req, res) => {
-  const { email, password, rememberMe } = req.body;
+  const { email, password, rememberMe, fullName } = req.body;
 
   try {
     //Find the user with the provided email in the database
@@ -96,11 +98,9 @@ app.post('/login', async (req, res) => {
       // Generate a JSON Web Token (JWT) for authentication
       const token = jwt.sign({ _id: user._id }, SECRET_KEY, { expiresIn: '30d' });
       res.cookie('rememberMeToken', token, { maxAge: 30 * 24 * 60 * 60 * 1000 }); // Set the token as a cookie
-    } 
+    }
 
-    req.session.fullName = user.fullName;
-
-    res.render('index.ejs', { fullName: user.fullName });
+    res.redirect('/');
     console.log('User Login Successfull');
   } catch (error) {
     console.error('Error during login', error);
@@ -298,6 +298,56 @@ app.post('/product', async (req, res) => {
     res.json(newProduct);
   } catch (error) {
     console.error('Error creating product: ', error);
+    res.status(500).json({ error: 'Server Error' });
+  }
+})
+
+app.get('/wishlist/add/:productId', async (req, res) => {
+  try {
+    const userId = req.session.userId; // Assuming you have user authentication
+    const fullName = req.session.fullName || '';
+
+    const wishlistItems = await Wishlist.find({ user_id: userId }).populate('product_id');
+
+    res.render('wishlist.ejs', { wishlistItems, fullName });
+  } catch (error) {
+      console.error('Error fetching wishlist:', error);
+      res.status(500).json({ error: 'Server Error' });
+  }
+})
+
+app.post('/wishlist/add/:productId', async (req, res) => {
+  try {
+    const productId = req.params.productId;
+    const userId = req.params.userId;
+
+    const wishlistItem = await Wishlist.create({
+      product_id: productId,
+      user_id: userId
+    });
+
+    await wishlistItem.save();
+
+    res.json(wishlistItem);
+  } catch (error) {
+      console.error('Error adding to wishlist:', error);
+      res.status(500).json({ error: 'Server Error' });
+  }
+})
+
+app.post('/:id', async (req, res) => {
+  try {
+    const wishlistItem = await Wishlist.findById(req.params.id);
+
+    if (!wishlistItem) {
+      return res.status(404).json({ error: 'Wishlist item not found' });
+    }
+
+    await wishlistItem.remove();
+
+    res.redirect('/wishlist'); // Redirect back to the wishlist page
+  } catch (error) {
+    console.error('Error deleting wishlist item: ', error);
     res.status(500).json({ error: 'Server Error' });
   }
 })

@@ -7,14 +7,11 @@ const bcrypt = require('bcrypt')
 const db = require('./db/mongoose')
 const User = require('./models/user')
 const Product = require('./models/product')
-const Wishlist = require('./models/wishlist')
 const SECRET_KEY = 'suyash1303';
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 const nodemailer = require('nodemailer');
 const session = require('express-session');
-const mongoose = require('mongoose')
-const ObjectId = mongoose.Types.ObjectId;
 const _ = require('lodash')
 
 app.use(express.static(__dirname + '/public'));
@@ -35,6 +32,7 @@ app.set('view engine', 'ejs');
 // Set up a route to serve the login form
 app.get('/', async (req, res) => {
   try {
+    const userId = req.session.userId;
     const fullName = req.session.fullName || '';
     const limit = 8;
 
@@ -48,7 +46,7 @@ app.get('/', async (req, res) => {
       product.image_url = `${product.product_name}.png`;
     });
 
-    res.render('index.ejs', { fullName, products: shuffledProducts });
+    res.render('index.ejs', { fullName, products: shuffledProducts, userId });
   } catch(error) {
     console.error('Error fetching products: ', error);
   }
@@ -302,55 +300,70 @@ app.post('/product', async (req, res) => {
   }
 })
 
-app.get('/wishlist/add/:productId', async (req, res) => {
+app.get('/wishlist', async (req, res) => {
+  const userId = req.session.userId; // Assuming you have user authentication
+  const fullName = req.session.fullName || '';
+
   try {
-    const userId = req.session.userId; // Assuming you have user authentication
-    const fullName = req.session.fullName || '';
+    const user = await User.findById(userId).populate('wishlist');
 
-    const wishlistItems = await Wishlist.find({ user_id: userId }).populate('product_id');
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
 
-    res.render('wishlist.ejs', { wishlistItems, fullName });
+    res.render('wishlist.ejs', { wishlistItems: user.wishlist, fullName, userId: user._id });
   } catch (error) {
-      console.error('Error fetching wishlist:', error);
-      res.status(500).json({ error: 'Server Error' });
+    console.error('Error fetching wishlist:', error);
+    res.status(500).json({ error: 'Server error' });
   }
 })
 
 app.post('/wishlist/add/:productId', async (req, res) => {
+  const productId = req.params.productId;
+  const userId = req.session.userId; // Assuming you have user authentication
+
   try {
-    const productId = req.params.productId;
-    const userId = req.params.userId;
-
-    const wishlistItem = await Wishlist.create({
-      product_id: productId,
-      user_id: userId
-    });
-
-    await wishlistItem.save();
-
-    res.json(wishlistItem);
-  } catch (error) {
-      console.error('Error adding to wishlist:', error);
-      res.status(500).json({ error: 'Server Error' });
-  }
-})
-
-app.post('/:id', async (req, res) => {
-  try {
-    const wishlistItem = await Wishlist.findById(req.params.id);
-
-    if (!wishlistItem) {
-      return res.status(404).json({ error: 'Wishlist item not found' });
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
     }
 
-    await wishlistItem.remove();
+    // Check if the product is already in the wishlist
+    if (user.wishlist.includes(productId)) {
+      return res.status(400).json({ message: 'Product already in wishlist' });
+    }
 
-    res.redirect('/wishlist'); // Redirect back to the wishlist page
+    // Add product to user's wishlist
+    user.wishlist.push(productId);
+    await user.save();
+
+    res.json({ message: 'Product added to wishlist' });
   } catch (error) {
-    console.error('Error deleting wishlist item: ', error);
-    res.status(500).json({ error: 'Server Error' });
+    console.error('Error adding to wishlist:', error);
+    res.status(500).json({ error: 'Server error' });
   }
 })
+
+app.post('/wishlist/remove/:productId', async (req, res) => {
+  const productId = req.params.productId;
+  const userId = req.session.userId; // Assuming you have user authentication
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Remove product from user's wishlist
+    user.wishlist.pull(productId);
+    await user.save();
+
+    res.json({ message: 'Product removed from wishlist' });
+  } catch (error) {
+    console.error('Error removing from wishlist:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

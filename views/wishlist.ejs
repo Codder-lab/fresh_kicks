@@ -75,25 +75,24 @@
     <!-- Wishlist -->
     <div class="container">
       <h1>Your Wishlist</h1>
-      <% wishlistItems.forEach(wishlistItem => { %>
-        <div class="card mb-3">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="/<%= wishlistItem.product_id.image_url %>" class="img-fluid" alt="<%= wishlistItem.product_id.product_title %>">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title"><%= wishlistItem.product_id.product_title %></h5>
-                <p class="card-text">Price: Rs.<%= wishlistItem.product_id.product_price %></p>
-                <a href="/product/<%= wishlistItem.product_id._id %>" class="btn btn-primary">View Product</a>
-                <form action="/wishlist/<%= wishlistItem._id %>" method="post" style="display: inline-block;">
-                  <button type="submit" class="btn btn-danger">Remove from Wishlist</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% }); %>
+      <% if (user.wishlist.length === 0) { %>
+        <p>Your wishlist is empty.</p>
+      <% } else { %>
+        <ul>
+          <% user.wishlist.forEach(wishlistItem => { %>
+            <li>
+              <img src="<%= wishlistItem.product_id.image_url %>" alt="<%= wishlistItem.product_id.product_title %>" width="100">
+              <p><%= wishlistItem.product_id.product_title %></p>
+              <p>Price: <%= wishlistItem.product_id.product_price %></p>
+              <a href="/product/<%= wishlistItem.product_id._id %>">View Product</a>
+              <form action="/wishlist/remove/<%= wishlistItem._id %>" method="post">
+                <button type="submit">Remove from Wishlist</button>
+              </form>
+            </li>
+          <% }); %>
+        </ul>
+      <% } %>
+      <a href="/">Back to Home</a>
     </div>
 
     <!-- Footer -->

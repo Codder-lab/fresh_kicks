@@ -12,7 +12,8 @@ const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 const nodemailer = require('nodemailer');
 const session = require('express-session');
-const _ = require('lodash')
+const _ = require('lodash');
+const product = require('./models/product');
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
@@ -97,6 +98,9 @@ app.post('/login', async (req, res) => {
       const token = jwt.sign({ _id: user._id }, SECRET_KEY, { expiresIn: '30d' });
       res.cookie('rememberMeToken', token, { maxAge: 30 * 24 * 60 * 60 * 1000 }); // Set the token as a cookie
     }
+
+    // Store userId in the session
+    req.session.userId = user._id;
 
     res.redirect('/');
     console.log('User Login Successfull');
@@ -303,6 +307,7 @@ app.post('/product', async (req, res) => {
 app.get('/wishlist', async (req, res) => {
   const userId = req.session.userId; // Assuming you have user authentication
   const fullName = req.session.fullName || '';
+  const productId = req.params.productId;
 
   try {
     const user = await User.findById(userId).populate('wishlist');
@@ -311,7 +316,7 @@ app.get('/wishlist', async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    res.render('wishlist.ejs', { wishlistItems: user.wishlist, fullName, userId: user._id });
+    res.render('wishlist.ejs', { wishlistItems: user.wishlist, fullName, userId: user._id, user });
   } catch (error) {
     console.error('Error fetching wishlist:', error);
     res.status(500).json({ error: 'Server error' });

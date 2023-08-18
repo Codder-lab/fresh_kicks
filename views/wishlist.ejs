@@ -75,25 +75,26 @@
     <!-- Wishlist -->
     <div class="container">
       <h1>Your Wishlist</h1>
-      <% if (user.wishlist.length === 0) { %>
+      <% if (wishlistItems.length === 0) { %>
         <p>Your wishlist is empty.</p>
       <% } else { %>
         <ul>
-          <% user.wishlist.forEach(wishlistItem => { %>
-            <li>
-              <img src="<%= wishlistItem.product_id.image_url %>" alt="<%= wishlistItem.product_id.product_title %>" width="100">
-              <p><%= wishlistItem.product_id.product_title %></p>
-              <p>Price: <%= wishlistItem.product_id.product_price %></p>
-              <a href="/product/<%= wishlistItem.product_id._id %>">View Product</a>
-              <form action="/wishlist/remove/<%= wishlistItem._id %>" method="post">
-                <button type="submit">Remove from Wishlist</button>
-              </form>
-            </li>
-          <% }); %>
+            <% wishlistItems.forEach(wishlistItem => { %>
+                <li>
+                    <img src="<%= wishlistItem.image_url %>" alt="<%= wishlistItem.product_title %>" width="100">
+                    <p><%= wishlistItem.product_title %></p>
+                    <p>Price: <%= wishlistItem.product_price %></p>
+                    <a href="/product/<%= wishlistItem._id %>">View Product</a>
+                    <form action="/wishlist/remove/<%= wishlistItem._id %>" method="post">
+                        <button type="submit">Remove from Wishlist</button>
+                    </form>
+                </li>
+            <% }); %>
         </ul>
       <% } %>
       <a href="/">Back to Home</a>
     </div>
+
 
     <!-- Footer -->
     <div class="container-fluid bg-body-tertiary">

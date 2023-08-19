@@ -73,30 +73,69 @@
         </nav>
     </div>
 
+    <!-- Page header -->
+    <div class="page-header bg-body-tertiary py-4">
+      <div class="container d-flex flex-column align-items-center">
+          <nav aria-label="breadcrumb" class="breadcrumb-nav">
+              <div class="container">
+                  <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="/">Home</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">
+                          Wishlist
+                      </li>
+                  </ol>
+              </div>
+          </nav>
+          <h1>My Wishlist</h1>
+      </div>
+  </div>
+
     <!-- Wishlist -->
-    <div class="container-fluid">
-      <h1>Your Wishlist</h1>
+    <div class="container-fluid py-4">
       <% if (wishlistItems.length === 0) { %>
         <p>Your wishlist is empty.</p>
       <% } else { %>
-        <ul class="wishlist-items">
-            <% wishlistItems.forEach(wishlistItem => { %>
-                <li class="wishlist-item">
-                    <img src="<%= wishlistItem.image_url %>" alt="<%= wishlistItem.product_title %>" width="100">
-                    <div class="wishlist-item-details">
-                      <p><%= wishlistItem.product_title %></p>
-                      <p>Price: <%= wishlistItem.product_price %></p>
-                      <a href="/product/<%= wishlistItem._id %>">View Product</a>
-                      <form action="/wishlist/remove/<%= wishlistItem._id %>" method="post">
-                        <button type="submit"><i class="bi bi-trash"></i></button>
-                      </form>
-                    </div>
-                </li>
-            <% }); %>
-        </ul>
+      <div class="wishlist-table-container">
+          <table class="table table-wishlist mb-0">
+              <thead>
+                  <tr>
+                      <th class="thumbnail-col"></th>
+                      <th class="product-col">PRODUCT</th>
+                      <th class="price-col">PRICE</th>
+                      <th class="action-col">ACTIONS</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <% wishlistItems.forEach(wishlistItem => { %>
+                  <tr class="product-row">
+                      <td>
+                          <figure class="product-image-container">
+                              <a href="/product/<%= wishlistItem._id %>" class="product-image">
+                                  <img src="<%= wishlistItem.image_url %>" alt="product" width="275" height="200">
+                              </a>
+                          </figure>
+                      </td>
+                      <td>
+                          <a href="/product/<%= wishlistItem._id %>" class="productTitle"><%= wishlistItem.product_title %></a>
+                      </td>
+                      <td class="price-box">Rs. <%= wishlistItem.product_price %></td>
+                      <td class="action">
+                        <div class="d-flex flex-row align-items-center">
+                          <button class="btn btn-danger btn-add-cart product-type-simple btn-shop">
+                              ADD TO CART
+                          </button>
+                          <form action="/wishlist/remove/<%= wishlistItem._id %>" method="post" class="d-flex px-4">
+                            <button type="submit" title="Remove item" class="remove-button"><i class="bi bi-trash"></i></button>
+                          </form>
+                        </div>
+                      </td>
+                    <% }); %>
+                  </tr>
+              </tbody>
+          </table>
+      </div><!-- End .cart-table-container -->
       <% } %>
-      <a href="/">Back to Home</a>
-    </div>
+  </div>
 
 
     <!-- Footer -->

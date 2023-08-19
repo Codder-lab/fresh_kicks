@@ -60,3 +60,7 @@ a.footer:hover {
     outline: none;
     border: none; /* Remove the default focus outline */
 }
+
+form i {
+    cursor: pointer;
+}

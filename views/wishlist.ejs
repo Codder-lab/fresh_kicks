@@ -9,6 +9,7 @@
     <link rel="icon" href="/kicks_icon.png">
     <!-- Link to Bootstrap CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <!-- Link to your custom CSS file -->
     <link rel="stylesheet" href="/wishlist.css">
 </head>
@@ -73,21 +74,23 @@
     </div>
 
     <!-- Wishlist -->
-    <div class="container">
+    <div class="container-fluid">
       <h1>Your Wishlist</h1>
       <% if (wishlistItems.length === 0) { %>
         <p>Your wishlist is empty.</p>
       <% } else { %>
-        <ul>
+        <ul class="wishlist-items">
             <% wishlistItems.forEach(wishlistItem => { %>
-                <li>
+                <li class="wishlist-item">
                     <img src="<%= wishlistItem.image_url %>" alt="<%= wishlistItem.product_title %>" width="100">
-                    <p><%= wishlistItem.product_title %></p>
-                    <p>Price: <%= wishlistItem.product_price %></p>
-                    <a href="/product/<%= wishlistItem._id %>">View Product</a>
-                    <form action="/wishlist/remove/<%= wishlistItem._id %>" method="post">
-                        <button type="submit">Remove from Wishlist</button>
-                    </form>
+                    <div class="wishlist-item-details">
+                      <p><%= wishlistItem.product_title %></p>
+                      <p>Price: <%= wishlistItem.product_price %></p>
+                      <a href="/product/<%= wishlistItem._id %>">View Product</a>
+                      <form action="/wishlist/remove/<%= wishlistItem._id %>" method="post">
+                        <button type="submit"><i class="bi bi-trash"></i></button>
+                      </form>
+                    </div>
                 </li>
             <% }); %>
         </ul>

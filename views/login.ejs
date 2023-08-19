@@ -9,8 +9,9 @@
   <link rel="icon" href="/kicks_icon.png">
   <!-- Link to Bootstrap CSS -->
   <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
   <!-- Link to your custom CSS file -->
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/login.css">
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -93,6 +94,7 @@
                     <div class="form-floating mb-3">
                       <input type="password" id="password" name="password" class="form-control form-control-lg"
                         placeholder="Enter password" required/>
+                      <i class="bi bi-eye-slash d-flex pt-2" id="togglePassword">Show Password</i>
                       <label class="form-label" for="password">Password</label>
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
@@ -109,7 +111,7 @@
                       <button type="submit" class="btn btn-danger btn-lg"
                         style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
                       <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="/register"
-                          class="link-danger">Register</a></p>
+                        class="link-danger">Register</a></p>
                     </div>
                   </form>
                 </div>
@@ -212,6 +214,18 @@
             }, 400);
             return false;
           });
+      });
+
+      // JavaScript to toggle password visibility
+      const togglePassword = document.querySelector('#togglePassword');
+      const password = document.querySelector('#password');
+
+      togglePassword.addEventListener('click', function (e) {
+        // toggle the type attribute
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        // toggle the eye / eye slash icon
+        this.classList.toggle('bi-eye');
       });
     </script>
 </body>

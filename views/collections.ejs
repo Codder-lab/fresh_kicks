@@ -164,7 +164,12 @@
                   <% } %>
                     <ul>
                         <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
-                        <li><a href="/wishlist/add/<%= product._id %>"><img src="/heart.svg" alt="heart" width="15px" height="15px"></a></li>
+                        <li>
+                          <input type="hidden" name="user_id" value="<%= userId %>">
+                            <button type="submit" class="btn">
+                              <img src="/heart.svg" alt="heart" width="15px" height="15px">
+                            </button>
+                        </li>
                         <li><a href="/product/<%= product._id %>"><img src="/fullscreen.svg" alt="maximize icon" width="15px" height="15px"></a></li>
                     </ul>
                 </div>

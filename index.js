@@ -14,6 +14,8 @@ const nodemailer = require('nodemailer');
 const session = require('express-session');
 const _ = require('lodash');
 const product = require('./models/product');
+const mongoose = require('mongoose')
+const ObjectId = mongoose.Types.ObjectId;
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
@@ -203,6 +205,7 @@ app.post('/register', async (req, res) => {
 
 app.get('/collections', async (req, res) => {
   try {
+    const userId = req.session.userId;
     const fullName = req.session.fullName || '';
     const selectedCategory = req.query.category || ''; // Get the selected category from query parameter
 
@@ -221,7 +224,7 @@ app.get('/collections', async (req, res) => {
       product.image_url = `${product.product_name}.png`;
     });
 
-    res.render('collections.ejs', { fullName, products: shuffledProducts, selectedCategory });
+    res.render('collections.ejs', { fullName, products: shuffledProducts, selectedCategory, userId });
   } catch(error) {
     console.error('Error fetching products: ', error);
   }

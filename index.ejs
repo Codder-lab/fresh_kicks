@@ -9,6 +9,7 @@
   <link rel="icon" href="/kicks_icon.png">
   <!-- Link to Bootstrap CSS -->
   <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
   <!-- Link to your custom CSS file -->
   <link rel="stylesheet" href="/styles.css">
 </head>
@@ -151,10 +152,13 @@
                       <ul>
                           <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
                           <li>
-                            <form action="/wishlist/add/<%= product._id %>" method="post">
+                            <% function productIsInWishlist(userId, productId) {
+                              return userId && user.wishlist.includes(productId);
+                            } %>               
+                            <form action="/wishlist/add/<%= product._id %>" method="post" class="wishlist-form">
                               <input type="hidden" name="user_id" value="<%= userId %>">
-                              <button type="submit" class="btn">
-                                <img src="/heart.svg" alt="heart" width="15px" height="15px">
+                              <button type="submit" class="btn wishlist-button <%= userId && userId.wishlist && productIsInWishlist(userId.wishlist, product._id) ? 'active' : '' %>">
+                                <i class="bi <%= userId && userId.wishlist && productIsInWishlist(userId.wishlist, product._id) ? 'bi-heart-fill' : 'bi-heart' %>" id="heart"></i>
                               </button>
                             </form>
                         </li>
@@ -323,6 +327,35 @@
             return false;
           });
       });
+
+      const wishlistForms = document.querySelectorAll('.wishlist-form');
+
+      wishlistForms.forEach(form => {
+        form.addEventListener('submit', async event => {
+          event.preventDefault();
+          const productId = event.target.getAttribute('action').split('/').pop();
+          const heartIcon = form.querySelector('.bi');
+
+          try {
+            const response = await fetch(event.target.getAttribute('action'), {
+              method: 'POST',
+              body: new URLSearchParams(new FormData(form))
+            });
+
+            if (response.ok) {
+              heartIcon.classList.toggle('bi-heart');
+              heartIcon.classList.toggle('bi-heart-fill');
+              // You can add more visual feedback or update the UI here
+            } else {
+              const data = await response.json();
+              console.error('Error:', data.error || data.message);
+            }
+          } catch (error) {
+            console.error('Error:', error);
+          }
+        });
+      });
+
     </script>
 </body>
 </html>

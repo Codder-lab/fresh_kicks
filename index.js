@@ -278,6 +278,7 @@ app.get('/product/:productId', async (req, res) => {
   try {
     const fullName = req.session.fullName || '';
     const productId = req.params.productId;
+    const userId = req.session.userId;
     if (!ObjectId.isValid(productId)) {
       return res.status(400).json({ error: 'Invalid product ID' });
     }
@@ -286,7 +287,7 @@ app.get('/product/:productId', async (req, res) => {
     const product = await Product.findById(productId);
     product.image_url = product.image_url.split(',');
 
-    res.render('productDetails.ejs', { product, fullName });
+    res.render('productDetails.ejs', { product, fullName, userId });
   } catch (error) {
     console.error('Error fetching product details: ', error);
     res.status(500).json({ error: 'Server Error' });

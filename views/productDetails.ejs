@@ -9,6 +9,7 @@
     <link rel="icon" href="/kicks_icon.png">
     <!-- Link to Bootstrap CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <!-- Link to your custom CSS file -->
     <link rel="stylesheet" href="/productDetails.css">
 </head>
@@ -128,10 +129,22 @@
                 </label>
               </h5>
             </div>
-            <div class="action">
-							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
-							<a href="/wishlist/add/<%= product._id %>"><button class="like btn btn-default" type="button"><span class="fa fa-heart"><img src="/heart.svg" alt="Heart icon" width="30px" height="30px"></span></button></a>
-						</div>
+              <div class="row">
+                <div class="action">
+                  <button class="add-to-cart btn btn-default" type="button">add to cart</button>               
+                </div>
+                <div class="action">
+                  <% function productIsInWishlist(userId, productId) {
+                    return userId && user.wishlist.includes(productId);
+                  } %>
+                  <form action="/wishlist/add/<%= product._id %>" method="post" class="wishlist-form">
+                    <input type="hidden" name="user_id" value="<%= userId %>">
+                    <button type="submit" class="btn wishlist-button <%= userId && userId.wishlist && productIsInWishlist(userId.wishlist, product._id) ? 'active' : '' %>">
+                      <i class="bi <%= userId && userId.wishlist && productIsInWishlist(userId.wishlist, product._id) ? 'bi-heart-fill' : 'bi-heart' %>" id="heart"></i>
+                    </button>
+                  </form>
+                </div>
+              </div>
 					</div>
 				</div>
 			</div>
@@ -239,6 +252,34 @@
         button.addEventListener('click', () => {
           sizeToggleButtons.forEach(btn => btn.classList.remove('active'));
           button.classList.add('active');
+        });
+      });
+
+      const wishlistForms = document.querySelectorAll('.wishlist-form');
+
+      wishlistForms.forEach(form => {
+        form.addEventListener('submit', async event => {
+          event.preventDefault();
+          const productId = event.target.getAttribute('action').split('/').pop();
+          const heartIcon = form.querySelector('.bi');
+
+          try {
+            const response = await fetch(event.target.getAttribute('action'), {
+              method: 'POST',
+              body: new URLSearchParams(new FormData(form))
+            });
+
+            if (response.ok) {
+              heartIcon.classList.toggle('bi-heart');
+              heartIcon.classList.toggle('bi-heart-fill');
+              // You can add more visual feedback or update the UI here
+            } else {
+              const data = await response.json();
+              console.error('Error:', data.error || data.message);
+            }
+          } catch (error) {
+            console.error('Error:', error);
+          }
         });
       });
     </script>

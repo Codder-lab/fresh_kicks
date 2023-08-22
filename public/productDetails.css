@@ -318,3 +318,8 @@ img {
   color: #fff;
   border-color: #fe302f;
 }
+
+#heart {
+    width: 40px;
+    height: 40px;
+}

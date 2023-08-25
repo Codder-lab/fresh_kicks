@@ -374,6 +374,11 @@ app.post('/wishlist/remove/:productId', async (req, res) => {
   }
 });
 
+app.get('/cart', async (req, res) => {
+  const fullName = req.session.fullName || '';
+  res.render('addToCart.ejs', { fullName });
+})
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

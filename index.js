@@ -375,9 +375,70 @@ app.post('/wishlist/remove/:productId', async (req, res) => {
 });
 
 app.get('/cart', async (req, res) => {
+  const userId = req.session.userId; // Assuming you have user authentication
   const fullName = req.session.fullName || '';
-  res.render('addToCart.ejs', { fullName });
+  const productId = req.params.productId;
+
+  try {
+    const user = await User.findById(userId).populate('cart');
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.render('addToCart.ejs', { cartItems: user.cart, fullName, userId: user._id, user });
+  } catch (error) {
+    console.error('Error fetching cart:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
 })
+
+app.post('/cart/add/:productId', async (req, res) => {
+  const productId = req.params.productId;
+  const userId = req.session.userId; // Assuming you have user authentication
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Check if the product is already in the cart
+    if (user.cart.includes(productId)) {
+      return res.status(400).json({ message: 'Product already in cart' });
+    }
+
+    // Add product to user's cart
+    user.cart.push(productId);
+    await user.save();
+
+    res.json({ message: 'Product added to cart' });
+  } catch (error) {
+    console.error('Error adding to cart:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+})
+
+app.post('/cart/remove/:productId', async (req, res) => {
+  const productId = req.params.productId;
+  const userId = req.session.userId; // Assuming you have user authentication
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Remove product from user's wishlist
+    user.cart.pull(productId);
+    await user.save();
+
+    res.json({ message: 'Product removed from cart' });
+  } catch (error) {
+    console.error('Error removing from cart:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

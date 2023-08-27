@@ -121,9 +121,7 @@
                       <td class="price-box">Rs. <%= wishlistItem.product_price %></td>
                       <td class="action">
                         <div class="d-flex flex-row align-items-center">
-                          <button class="btn btn-danger btn-add-cart product-type-simple btn-shop">
-                              ADD TO CART
-                          </button>
+                          <button class="btn btn-danger btn-add-cart product-type-simple btn-shop">ADD TO CART</button>
                           <form action="/wishlist/remove/<%= wishlistItem._id %>" method="post" class="d-flex px-4">
                             <button type="submit" title="Remove item" class="remove-button"><i class="bi bi-trash"></i></button>
                           </form>

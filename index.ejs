@@ -150,7 +150,11 @@
                       <span class="new">New</span>
                     <% } %>
                       <ul>
-                          <li><a href="#"><img src="/cart.svg" alt="cart" width="15px" height="15px"></a></li>
+                          <li>
+                            <a href="#" onclick="addToCart('<%= product._id %>'); return false;">
+                                <img src="/cart.svg" alt="cart" width="15px" height="15px">
+                            </a>
+                          </li>
                           <li>
                             <% function productIsInWishlist(userId, productId) {
                               return userId && user.wishlist.includes(productId);
@@ -356,6 +360,22 @@
         });
       });
 
+      function addToCart(productId) {
+          // Make a POST request to add the product to the cart
+          fetch(`/cart/add/${productId}`, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+          })
+          .then(response => response.json())
+          .then(data => {
+              console.log(data.message); // Product added to cart message
+          })
+          .catch(error => {
+              console.error('Error adding to cart:', error);
+          });
+      };
     </script>
 </body>
 </html>

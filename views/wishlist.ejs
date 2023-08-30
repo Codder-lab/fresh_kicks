@@ -120,12 +120,14 @@
                       </td>
                       <td class="price-box">Rs. <%= wishlistItem.product_price %></td>
                       <td class="action">
+                        <% products.forEach((product, index) => { %>
                         <div class="d-flex flex-row align-items-center">
-                          <button class="btn btn-danger btn-add-cart product-type-simple btn-shop">ADD TO CART</button>
-                          <form action="/wishlist/remove/<%= wishlistItem._id %>" method="post" class="d-flex px-4">
-                            <button type="submit" title="Remove item" class="remove-button"><i class="bi bi-trash"></i></button>
-                          </form>
+                          <button class="btn btn-danger btn-add-cart product-type-simple btn-shop" onclick="addToCart('<%= product._id %>')">ADD TO CART</button>
+                          <a class="wishlist px-4" href="#" data-toggle="tooltip" title="" data-original-title="Remove item" onclick="removeFromWishlist('<%= wishlistItem._id %>'); return false">
+                            <i class="bi bi-trash"></i>
+                          </a>
                         </div>
+                        <% }); %>
                       </td>
                     <% }); %>
                   </tr>
@@ -239,6 +241,41 @@
             button.classList.add('active');
             });
         });
+
+        function removeFromWishlist(productId) {
+            // Make a POST request to remove the product from the wishlist
+            fetch(`/wishlist/remove/${productId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.message); // Product removed from wishlist message
+            })
+            .catch(error => {
+                console.error('Error removing the product from wishlist:', error);
+            });
+        };
+
+        function addToCart(productId) {
+            // Make a POST request to add the product to the cart
+            fetch(`/cart/add/${productId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.message); // Product added to cart message
+                // You might want to update the cart display or perform other actions
+            })
+            .catch(error => {
+                console.error('Error adding to cart:', error);
+            });
+        }
         </script>
 </body>
 </html>

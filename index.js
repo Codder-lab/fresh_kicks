@@ -315,12 +315,13 @@ app.get('/wishlist', async (req, res) => {
 
   try {
     const user = await User.findById(userId).populate('wishlist');
+    const productData = await Product.findById(user.productId);
 
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    res.render('wishlist.ejs', { wishlistItems: user.wishlist, fullName, userId: user._id, user });
+    res.render('wishlist.ejs', { wishlistItems: user.wishlist, fullName, userId: user._id, user, products: productData });
   } catch (error) {
     console.error('Error fetching wishlist:', error);
     res.status(500).json({ error: 'Server error' });

@@ -89,8 +89,6 @@ a.footer:hover {
   }
 }
 
-.remove-button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
+.wishlist i.bi-trash {
+    color: #fe302f; /* Change this to the desired color */
 }

@@ -120,14 +120,12 @@
                       </td>
                       <td class="price-box">Rs. <%= wishlistItem.product_price %></td>
                       <td class="action">
-                        <% products.forEach((product, index) => { %>
                         <div class="d-flex flex-row align-items-center">
-                          <button class="btn btn-danger btn-add-cart product-type-simple btn-shop" onclick="addToCart('<%= product._id %>')">ADD TO CART</button>
+                          <button class="btn btn-danger btn-add-cart product-type-simple btn-shop">ADD TO CART</button>
                           <a class="wishlist px-4" href="#" data-toggle="tooltip" title="" data-original-title="Remove item" onclick="removeFromWishlist('<%= wishlistItem._id %>'); return false">
                             <i class="bi bi-trash"></i>
                           </a>
                         </div>
-                        <% }); %>
                       </td>
                     <% }); %>
                   </tr>

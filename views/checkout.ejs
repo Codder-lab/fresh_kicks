@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshKicks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Poppins&display=swap" 
+        rel="stylesheet">
+    <link rel="icon" href="/kicks_icon.png">
+    <!-- Link to Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <!-- Link to your custom CSS file -->
+    <link rel="stylesheet" href="/checkout.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg" aria-label="Offcanvas navbar large">
+            <div class="container-fluid">
+              <a href="/" class="logo"><img src="/freshkicks_logo.png" alt="Logo of Fresh Kicks" width="150"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+              <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                <div class="offcanvas-header">
+                  <img src="/person-circle.svg" width="40" height="40" class="rounded-circle">
+                  <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                  <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 ms-xl-5 align-items-xl-center align-items-lg-center">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/collections">Collection</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about-us">About Us</a>
+                  </li>
+                    <li class="nav-item">
+                      <a class="nav-link d-lg-none d-xl-none" href="/cart">My Cart</a>
+                    </li>
+                  </ul>
+                  <form class="d-flex mt-3 mt-lg-0 mt-xl-0 align-items-center flex-grow-1" role="search">
+                    <input class="form-control me-xl-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-primary" type="submit"><img src="/search.svg" alt="cart-icon" class="bi" width="24" height="24"></button>
+                  </form>
+                  <div class="collapse navbar-collapse px-5" id="navbar-list-4">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown" id="hover-dropdown">
+                        <a class="nav-link link-body-emphasis text-decoration-none dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <img src="/person-circle.svg" width="40" height="40" class="rounded-circle">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                          <% if (fullName) { %>
+                            <p>Hello, <%= fullName %>!</p>
+                          <% } %>
+                          <a class="dropdown-item" href="/login">Log In</a>
+                          <a class="dropdown-item" href="/cart">My Cart</a>
+                          <a class="dropdown-item" href="#">Edit Profile</a>
+                          <a class="dropdown-item" href="#">Log Out</a>
+                        </div>
+                      </li>   
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Page header -->
+    <div class="page-header bg-body-tertiary py-4">
+      <div class="container d-flex flex-column align-items-center">
+          <nav aria-label="breadcrumb" class="breadcrumb-nav">
+              <div class="container">
+                  <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="/">Home</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">
+                          Checkout
+                      </li>
+                  </ol>
+              </div>
+          </nav>
+          <h1>Checkout Form</h1>
+      </div>
+  </div>
+
+  <!-- Checkout-form -->
+  <div class="row g-5 container-fluid py-4">
+    <div class="col-md-5 col-lg-4 order-md-last">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-primary">Your cart</span>
+        <span class="badge bg-primary rounded-pill">3</span>
+      </h4>
+      <ul class="list-group mb-3">
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+          <div>
+            <h6 class="my-0">Product name</h6>
+            <small class="text-body-secondary">Brief description</small>
+          </div>
+          <span class="text-body-secondary">$12</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+          <div>
+            <h6 class="my-0">Second product</h6>
+            <small class="text-body-secondary">Brief description</small>
+          </div>
+          <span class="text-body-secondary">$8</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+          <div>
+            <h6 class="my-0">Third item</h6>
+            <small class="text-body-secondary">Brief description</small>
+          </div>
+          <span class="text-body-secondary">$5</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+          <div class="text-success">
+            <h6 class="my-0">Promo code</h6>
+            <small>EXAMPLECODE</small>
+          </div>
+          <span class="text-success">−$5</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <span>Total (USD)</span>
+          <strong>$20</strong>
+        </li>
+      </ul>
+
+      <form class="card p-2">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Promo code">
+          <button type="submit" class="btn btn-secondary">Redeem</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-7 col-lg-8">
+      <h4 class="mb-3">Billing address</h4>
+      <form class="needs-validation" novalidate="">
+        <div class="row g-3">
+          <div class="col-sm-6">
+            <label for="firstName" class="form-label">First name</label>
+            <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+            <div class="invalid-feedback">
+              Valid first name is required.
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <label for="lastName" class="form-label">Last name</label>
+            <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+            <div class="invalid-feedback">
+              Valid last name is required.
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label for="username" class="form-label">Username</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text">@</span>
+              <input type="text" class="form-control" id="username" placeholder="Username" required="">
+            <div class="invalid-feedback">
+                Your username is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label for="email" class="form-label">Email <span class="text-body-secondary">(Optional)</span></label>
+            <input type="email" class="form-control" id="email" placeholder="you@example.com">
+            <div class="invalid-feedback">
+              Please enter a valid email address for shipping updates.
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
+            <div class="invalid-feedback">
+              Please enter your shipping address.
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label for="address2" class="form-label">Address 2 <span class="text-body-secondary">(Optional)</span></label>
+            <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+          </div>
+
+          <div class="col-md-5">
+            <label for="country" class="form-label">Country</label>
+            <select class="form-select" id="country" required="">
+              <option value="">Choose...</option>
+              <option>United States</option>
+            </select>
+            <div class="invalid-feedback">
+              Please select a valid country.
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <label for="state" class="form-label">State</label>
+            <select class="form-select" id="state" required="">
+              <option value="">Choose...</option>
+              <option>California</option>
+            </select>
+            <div class="invalid-feedback">
+              Please provide a valid state.
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <label for="zip" class="form-label">Zip</label>
+            <input type="text" class="form-control" id="zip" placeholder="" required="">
+            <div class="invalid-feedback">
+              Zip code required.
+            </div>
+          </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="same-address">
+          <label class="form-check-label" for="same-address">Shipping address is the same as my billing address</label>
+        </div>
+
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="save-info">
+          <label class="form-check-label" for="save-info">Save this information for next time</label>
+        </div>
+
+        <hr class="my-4">
+
+        <h4 class="mb-3">Payment</h4>
+
+        <div class="my-3">
+          <div class="form-check">
+            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked="" required="">
+            <label class="form-check-label" for="credit">Credit card</label>
+          </div>
+          <div class="form-check">
+            <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required="">
+            <label class="form-check-label" for="debit">Debit card</label>
+          </div>
+          <div class="form-check">
+            <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required="">
+            <label class="form-check-label" for="paypal">PayPal</label>
+          </div>
+        </div>
+
+        <div class="row gy-3">
+          <div class="col-md-6">
+            <label for="cc-name" class="form-label">Name on card</label>
+            <input type="text" class="form-control" id="cc-name" placeholder="" required="">
+            <small class="text-body-secondary">Full name as displayed on card</small>
+            <div class="invalid-feedback">
+              Name on card is required
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="cc-number" class="form-label">Credit card number</label>
+            <input type="text" class="form-control" id="cc-number" placeholder="" required="">
+            <div class="invalid-feedback">
+              Credit card number is required
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <label for="cc-expiration" class="form-label">Expiration</label>
+            <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
+            <div class="invalid-feedback">
+              Expiration date required
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <label for="cc-cvv" class="form-label">CVV</label>
+            <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
+            <div class="invalid-feedback">
+              Security code required
+            </div>
+          </div>
+        </div>
+
+        <hr class="my-4">
+
+        <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="container-fluid bg-body-tertiary">
+    <footer class="py-5">
+      <div class="row">
+        <div class="col-6 col-md-2 mb-3">
+          <h5>Our Company</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">Delivery</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">Legal Notice</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">Contact Us</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">About Us</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-2 mb-3">
+          <h5>Products</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">Price drop</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">New products</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">Best Sellers</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-2 mb-3">
+          <h5>Checkout</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">Cart</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">Payment method</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">Return policy</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">Terms of Service</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 footer">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="col-md-5 offset-md-1 mb-3">
+          <form>
+            <h5>Subscribe to our newsletter</h5>
+            <p>Monthly digest of what's new and exciting from us.</p>
+            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+              <label for="newsletter1" class="visually-hidden">Email address</label>
+              <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+              <button class="btn btn-primary" type="button">Subscribe</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+        <div class="footer-content">
+            <a class="link-body-emphasis" href="#"><img src="/freshkicks_logo.png" alt="Fresh Kicks Icon" class="bi" width="150"></a><p>© 2023 FreshKicks, Inc. All rights reserved.</p>
+        </div>
+        <ul class="list-unstyled d-flex">
+          <li class="ms-3"><a class="link-body-emphasis" href="#"><img src="/github.svg" alt="Github" class="bi" width="24" height="24"></a></li>
+          <li class="ms-3"><a class="link-body-emphasis" href="#"><img src="/instagram.svg" alt="Instagram" class="bi" width="24" height="24"></a></li>
+          <li class="ms-3"><a class="link-body-emphasis" href="#"><img src="/facebook.svg" alt="Facebook" class="bi" width="24" height="24"></a></li>
+          <li class="ms-3"><a class="link-body-emphasis" href="#"><img src="/twitter.svg" alt="Twitter" class="bi" width="24" height="24"></a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+
+    <a id="back-to-top" href="#" class="btn btn-lg back-to-top" role="button">
+        <img src="/arrow-up.svg" alt="scroll to top arrow" width="35px" height="35px">
+    </a>
+        
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script>
+        // JavaScript to open the dropdown on hover
+        $(document).on("mouseenter", "#hover-dropdown", function() {
+            var dropdownMenu = $(this).find(".dropdown-menu");
+            dropdownMenu.show();
+        });
+        
+        // JavaScript to close the dropdown when the mouse leaves
+        $(document).on("mouseleave", "#hover-dropdown", function() {
+            var dropdownMenu = $(this).find(".dropdown-menu");
+            dropdownMenu.hide();
+        });
+
+        $(document).ready(function(){
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 50) {
+                $('#back-to-top').fadeIn();
+                } else {
+                $('#back-to-top').fadeOut();
+                }
+            });
+            // scroll body to 0px on click
+            $('#back-to-top').click(function () {
+                $('body,html').animate({
+                scrollTop: 0
+                }, 400);
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

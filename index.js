@@ -440,6 +440,11 @@ app.post('/cart/remove/:productId', async (req, res) => {
   }
 });
 
+app.get('/checkout', async (req, res) => {
+  const fullName = req.session.fullName || '';
+  res.render('checkout.ejs', { fullName });
+})
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

@@ -14,6 +14,7 @@ const nodemailer = require('nodemailer');
 const session = require('express-session');
 const _ = require('lodash');
 const product = require('./models/product');
+const Order = require('./models/order');
 const mongoose = require('mongoose')
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -441,9 +442,63 @@ app.post('/cart/remove/:productId', async (req, res) => {
 });
 
 app.get('/checkout', async (req, res) => {
+  const userId = req.session.userId; // Assuming you have user authentication
   const fullName = req.session.fullName || '';
-  res.render('checkout.ejs', { fullName });
-})
+  
+  try {
+    const user = await User.findById(userId).populate('cart');
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.render('checkout.ejs', { cartItems: user.cart, fullName, userId: user._id, user });
+  } catch (error) {
+    console.error('Error fetching cart for checkout:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+app.post('/checkout/place-order', async (req, res) => {
+  const userId = req.session.userId; // Assuming you have user authentication
+  const shippingAddress = req.body.shippingAddress; // Get shipping address from form input
+  
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Get the cart items
+    const cartItems = user.cart;
+
+    // Perform order processing and save the order to your database
+    // You will need to create an Order schema and save the order details
+    // based on the cart items and shipping address
+    const order = new Order({
+      userId: user._id,
+      items: cartItems,
+      shippingAddress: shippingAddress,
+      // Add other order-related fields
+    });
+    await order.save();
+
+    // Clear the user's cart
+    user.cart = [];
+    await user.save();
+
+    res.redirect('/checkout/success'); // Redirect to a success page
+  } catch (error) {
+    console.error('Error placing order:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+app.get('/checkout/success', (req, res) => {
+  // You can customize this page to display an order confirmation message
+  res.render('order-success.ejs');
+});
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

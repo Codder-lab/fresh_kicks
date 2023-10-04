@@ -33,6 +33,9 @@ const orderSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    address2: {
+        type: String
+    },
     state: {
         type: String,
         required: true,
@@ -40,6 +43,32 @@ const orderSchema = new mongoose.Schema({
     zip: {
         type: Number,
         required: true,
+    },
+    totalPrice: {
+        type: Number,
+        required: true
+    },
+    orderDate: {
+        type: Date,
+        default: Date.now
+    },
+    creditCard: {
+        nameOnCard: {
+            type: String,
+            required: true,
+        },
+        cardNumber: {
+            type: String,
+            required: true,
+        },
+        expirationDate: {
+            type: String, // Use Date type if storing actual date
+            required: true,
+        },
+        cvv: {
+            type: String,
+            required: true,
+        },
     },
         
     // Add other order-related fields such as total price, order date, status, etc.

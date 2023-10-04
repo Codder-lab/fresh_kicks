@@ -461,7 +461,8 @@ app.get('/checkout', async (req, res) => {
 
 app.post('/checkout/place-order', async (req, res) => {
   const userId = req.session.userId; // Assuming you have user authentication
-  const shippingAddress = req.body.shippingAddress; // Get shipping address from form input
+  // Extract data from the request body
+  const { firstName, lastName, email, address, address2, state, zip, items, totalPrice, orderDate, paymentMethod, nameOnCard, cardNumber, expirationDate, cvv } = req.body;
   
   try {
     const user = await User.findById(userId);
@@ -473,15 +474,7 @@ app.post('/checkout/place-order', async (req, res) => {
     // Get the cart items
     const cartItems = user.cart;
 
-    // Perform order processing and save the order to your database
-    // You will need to create an Order schema and save the order details
-    // based on the cart items and shipping address
-    const order = new Order({
-      userId: user._id,
-      items: cartItems,
-      shippingAddress: shippingAddress,
-      // Add other order-related fields
-    });
+    const order = new Order({ firstName, lastName, email, address, address2, state, zip, items, totalPrice, orderDate, paymentMethod, nameOnCard, cardNumber, expirationDate, cvv })
     await order.save();
 
     // Clear the user's cart
@@ -497,7 +490,9 @@ app.post('/checkout/place-order', async (req, res) => {
 
 app.get('/checkout/success', (req, res) => {
   // You can customize this page to display an order confirmation message
-  res.render('order-success.ejs');
+  const fullName = req.session.fullName || '';
+
+  res.render('order_success.ejs', { fullName });
 });
 
 app.listen(port, () => {

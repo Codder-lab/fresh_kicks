@@ -465,6 +465,18 @@ app.post('/checkout/place-order', async (req, res) => {
   const { firstName, lastName, email, address, address2, state, zip, items, totalPrice, orderDate, paymentMethod, nameOnCard, cardNumber, expirationDate, cvv } = req.body;
   
   try {
+    // Basic validation
+    if (!userId || !firstName || !lastName || !email || !items || !totalPrice || !orderDate || !paymentMethod) {
+      return res.status(400).json({ error: 'Invalid request data' });
+    }
+
+    // Validate payment details based on the selected payment method
+    if (paymentMethod === 'credit' || paymentMethod === 'debit') {
+      if (!nameOnCard || !cardNumber || !expirationDate || !cvv) {
+        return res.status(400).json({ error: 'Invalid payment details for credit/debit card' });
+      }
+    }
+    
     const user = await User.findById(userId);
 
     if (!user) {
@@ -474,7 +486,7 @@ app.post('/checkout/place-order', async (req, res) => {
     // Get the cart items
     const cartItems = user.cart;
 
-    const order = new Order({ firstName, lastName, email, address, address2, state, zip, items, totalPrice, orderDate, paymentMethod, nameOnCard, cardNumber, expirationDate, cvv })
+    const order = new Order({ userId, firstName, lastName, email, address, address2, state, zip, items, totalPrice, orderDate, paymentMethod, nameOnCard, cardNumber, expirationDate, cvv })
     await order.save();
 
     // Clear the user's cart

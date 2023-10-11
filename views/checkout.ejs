@@ -123,7 +123,7 @@
       </div>
     <div class="col-md-7 col-lg-8">
       <h4 class="mb-3">Billing address</h4>
-      <form class="needs-validation" novalidate="" method="post" action="/checkout">
+      <form class="needs-validation" novalidate="" method="post" action="/checkout/place-order">
         <div class="row g-3">
           <div class="col-sm-6">
             <label for="firstName" class="form-label">First name</label>
@@ -188,22 +188,22 @@
         <h4 class="mb-3">Payment</h4>
         <div class="my-3">
           <div class="form-check">
-            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" required="">
+            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" value="credit" required="">
             <label class="form-check-label" for="credit">Credit card</label>
           </div>
           <div class="form-check">
-            <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required="">
+            <input id="debit" name="paymentMethod" type="radio" class="form-check-input" value="debit" required="">
             <label class="form-check-label" for="debit">Debit card</label>
           </div>
           <div class="form-check">
-            <input id="cod" name="paymentMethod" type="radio" class="form-check-input" required="">
+            <input id="cod" name="paymentMethod" type="radio" class="form-check-input" value="cod" required="">
             <label class="form-check-label" for="cod">Cash on Delivery</label>
           </div>
         </div>
         <div class="row gy-3" id="creditCardSection" style="display: none">
           <div class="col-md-6">
             <label for="cc-name" class="form-label">Name on card</label>
-            <input type="text" class="form-control" id="nameOnCard" name="nameOnCard" placeholder="" required="">
+            <input type="text" class="form-control" id="nameOnCard" name="creditCard.nameOnCard" placeholder="" required="">
             <small class="text-body-secondary">Full name as displayed on card</small>
             <div class="invalid-feedback">
               Name on card is required
@@ -211,21 +211,21 @@
           </div>
           <div class="col-md-6">
             <label for="cc-number" class="form-label">Credit card number</label>
-            <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="" required="">
+            <input type="text" class="form-control" id="cardNumber" name="creditCard.cardNumber" placeholder="" required="">
             <div class="invalid-feedback">
               Credit card number is required
             </div>
           </div>
           <div class="col-md-3">
             <label for="cc-expiration" class="form-label">Expiration</label>
-            <input type="text" class="form-control" id="expirationDate" name="expirationDate" placeholder="" required="">
+            <input type="text" class="form-control" id="expirationDate" name="creditCard.expirationDate" placeholder="" required="">
             <div class="invalid-feedback">
               Expiration date required
             </div>
           </div>
           <div class="col-md-3">
             <label for="cc-cvv" class="form-label">CVV</label>
-            <input type="text" class="form-control" id="cvv" name="cvv" placeholder="" required="">
+            <input type="text" class="form-control" id="cvv" name="creditCard.cvv" placeholder="" required="">
             <div class="invalid-feedback">
               Security code required
             </div>
@@ -235,7 +235,7 @@
         <div class="row gy-3" id="debitCardSection" style="display: none">
           <div class="col-md-6">
             <label for="cc-name" class="form-label">Name on card</label>
-            <input type="text" class="form-control" id="nameOnCard" name="nameOnCard" placeholder="" required="">
+            <input type="text" class="form-control" id="nameOnCard" name="debitCard.nameOnCard" placeholder="" required="">
             <small class="text-body-secondary">Full name as displayed on card</small>
             <div class="invalid-feedback">
               Name on card is required
@@ -243,21 +243,21 @@
           </div>
           <div class="col-md-6">
             <label for="cc-number" class="form-label">Debit card number</label>
-            <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="" required="">
+            <input type="text" class="form-control" id="cardNumber" name="debitCard.cardNumber" placeholder="" required="">
             <div class="invalid-feedback">
               Debit card number is required
             </div>
           </div>
           <div class="col-md-3">
             <label for="cc-expiration" class="form-label">Expiration</label>
-            <input type="text" class="form-control" id="expirationDate" name="expirationDate" placeholder="" required="">
+            <input type="text" class="form-control" id="expirationDate" name="debitCard.expirationDate" placeholder="" required="">
             <div class="invalid-feedback">
               Expiration date required
             </div>
           </div>
           <div class="col-md-3">
             <label for="cc-cvv" class="form-label">CVV</label>
-            <input type="text" class="form-control" id="cvv" name="cvv" placeholder="" required="">
+            <input type="text" class="form-control" id="cvv" name="debitCard.cvv" placeholder="" required="">
             <div class="invalid-feedback">
               Security code required
             </div>

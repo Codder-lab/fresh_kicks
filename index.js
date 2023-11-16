@@ -462,11 +462,11 @@ app.get('/checkout', async (req, res) => {
 app.post('/checkout/place-order', async (req, res) => {
   const userId = req.session.userId; // Assuming you have user authentication
   // Extract data from the request body
-  const { firstName, lastName, email, address, address2, state, zip, items, totalPrice, orderDate, paymentMethod, nameOnCard, cardNumber, expirationDate, cvv } = req.body;
+  const { firstName, lastName, email, address, address2, state, zip, orderDate, paymentMethod, nameOnCard, cardNumber, expirationDate, cvv } = req.body;
   
   try {
     // Basic validation
-    if (!userId || !firstName || !lastName || !email || !items || !totalPrice || !orderDate || !paymentMethod) {
+    if (!userId || !firstName || !lastName || !email || !orderDate || !paymentMethod) {
       return res.status(400).json({ error: 'Invalid request data' });
     }
 
